@@ -15,12 +15,12 @@ class StateManager:
 
     def _default_state(self) -> Dict[str, Any]:
         books = self.book_loader.load_all_books()
-        first_book_id = next(iter(books.keys())) if books else ""
+        first_book_id = "ddia" if "ddia" in books else (next(iter(books.keys())) if books else "")
         return {
             "current_book_id": first_book_id,
             "current_chapter_num": 1,
             "history": [],
-            "last_posted_at": None,
+            "last_read_at": None,
         }
 
     def load_state(self) -> Dict[str, Any]:
@@ -52,7 +52,7 @@ class StateManager:
         self.save_state(state)
         return True
 
-    def get_next_task(self) -> Optional[Dict[str, Any]]:
+    def get_current(self) -> Optional[Dict[str, Any]]:
         state = self.load_state()
         book_id = state.get("current_book_id")
         chapter_num = state.get("current_chapter_num", 1)
@@ -71,7 +71,9 @@ class StateManager:
 
         chapter = book.get_chapter(chapter_num)
         if not chapter:
-            return None
+            chapter = book.chapters[0] if book.chapters else None
+            if not chapter:
+                return None
 
         return {
             "book": book,
@@ -79,22 +81,19 @@ class StateManager:
             "is_last_chapter": chapter_num >= book.total_chapters,
         }
 
-    def advance(self, tweet_id: Optional[str] = None) -> Dict[str, Any]:
+    def advance(self) -> Dict[str, Any]:
         state = self.load_state()
         book_id = state["current_book_id"]
         chapter_num = state["current_chapter_num"]
 
-        # Record to history
         now = datetime.now(timezone.utc).isoformat()
         state["history"].append({
             "book_id": book_id,
             "chapter_num": chapter_num,
-            "posted_at": now,
-            "tweet_id": tweet_id,
+            "read_at": now,
         })
-        state["last_posted_at"] = now
+        state["last_read_at"] = now
 
-        # Compute next target
         books = self.book_loader.load_all_books()
         book = books.get(book_id)
         book_ids = list(books.keys())
@@ -112,4 +111,12 @@ class StateManager:
             state["current_chapter_num"] = 1
 
         self.save_state(state)
+        return state
+
+    def previous(self) -> Dict[str, Any]:
+        state = self.load_state()
+        chapter_num = state.get("current_chapter_num", 1)
+        if chapter_num > 1:
+            state["current_chapter_num"] = chapter_num - 1
+            self.save_state(state)
         return state

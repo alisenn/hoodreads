@@ -3,12 +3,11 @@ import sys
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
-from rich.text import Text
+from rich.prompt import Prompt
 
 from src.book_loader import BookLoader
 from src.state_manager import StateManager
-from src.formatter import TweetFormatter
-from src.twitter_client import TwitterClient
+from src.formatter import CardFormatter
 
 console = Console()
 
@@ -22,22 +21,22 @@ def cmd_list(args):
     active_id = state.get("current_book_id")
     curr_chapter = state.get("current_chapter_num", 1)
 
-    table = Table(title="💀 HoodReads — Books from the Hood", show_header=True, header_style="bold magenta")
-    table.add_column("ID", style="cyan", width=15)
-    table.add_column("Kitap Adı", style="bold green", width=22)
-    table.add_column("Yazar", style="yellow", width=20)
-    table.add_column("Bölüm", justify="center", width=8)
-    table.add_column("Durum", style="bold", width=18)
+    table = Table(title="💀 HoodReads — Kişisel Sokak Kitaplığın", show_header=True, header_style="bold magenta")
+    table.add_column("ID", style="cyan", width=14)
+    table.add_column("Kitap Adı", style="bold green", width=24)
+    table.add_column("Yazar", style="yellow", width=18)
+    table.add_column("Alt Başlıklar", justify="center", width=14)
+    table.add_column("İlerleme", style="bold", width=20)
 
     for b_id, book in books.items():
         if b_id == active_id:
-            status = f"[bold green]▶ Aktif ({curr_chapter}/{book.total_chapters})[/]"
+            status = f"[bold green]▶ Okunuyor ({curr_chapter}/{book.total_chapters})[/]"
         else:
-            status = "[dim]Beklemede[/]"
-        table.add_row(book.id, book.title, book.author, str(book.total_chapters), status)
+            status = "[dim]Kütüphanede[/]"
+        table.add_row(book.id, book.title, book.author, f"{book.total_chapters} parça", status)
 
     console.print(table)
-    console.print("\n[dim]İpucu: Bir kitabı seçmek için: python main.py set-book <kitap_id>[/]\n")
+    console.print("\n[dim]İpucu: Okumaya başlamak için:[/] [bold cyan]python main.py read[/] [dim]veya interaktif mod için:[/] [bold green]python main.py interactive[/]\n")
 
 
 def cmd_preview(args):
@@ -48,7 +47,7 @@ def cmd_preview(args):
         return
 
     console.print(Panel(
-        f"[bold yellow]{book.title}[/] - {book.author}\n[italic]{book.tagline}[/]\nToplam Alt Başlık / Bölüm: [bold cyan]{book.total_chapters}[/]",
+        f"[bold yellow]{book.title}[/] - {book.author}\n[italic]{book.tagline}[/]\nToplam Alt Başlık / Konu: [bold cyan]{book.total_chapters}[/]",
         title="📖 Kitap Detayı",
         border_style="cyan"
     ))
@@ -64,47 +63,73 @@ def cmd_preview(args):
         chapters = chapters[:args.limit]
 
     for ch in chapters:
-        tweets = TweetFormatter.format_thread(book, ch)
-        for idx, t in enumerate(tweets):
-            len_info = f"({TweetFormatter.calculate_length(t)}/280 kar.)"
-            panel_title = f"📌 {ch.title} [dim]({ch.chapter_num}/{book.total_chapters})[/] | Tweet {idx + 1}/{len(tweets)} {len_info}"
-            console.print(Panel(t, title=panel_title, border_style="green"))
+        card = CardFormatter.format_card(book, ch)
+        console.print(card)
 
 
-def cmd_tweet(args):
+def cmd_read(args):
     loader = BookLoader()
     state_mgr = StateManager(book_loader=loader)
-    task = state_mgr.get_next_task()
+    curr = state_mgr.get_current()
 
-    if not task:
-        console.print("[bold red]Hata:[/] Yayınlanacak bölüm bulunamadı. Kütüphanede kitap var mı?")
+    if not curr:
+        console.print("[bold red]Hata:[/] Okunacak kitap bulunamadı.")
         return
 
-    book = task["book"]
-    chapter = task["chapter"]
-    tweets = TweetFormatter.format_thread(book, chapter)
+    book = curr["book"]
+    chapter = curr["chapter"]
 
-    force_dry_run = not args.live
-    client = TwitterClient(force_dry_run=force_dry_run)
+    card = CardFormatter.format_card(book, chapter)
+    console.print(card)
 
-    mode_label = "[bold yellow]DRY-RUN (Simülasyon)[/]" if client.dry_run else "[bold green]CANLI TWITTER (X)[/]"
-    console.print(f"\n🚀 Mod: {mode_label}")
-    console.print(f"📖 Kitap: [bold cyan]{book.title}[/] | Bölüm: [bold yellow]{chapter.chapter_num}/{book.total_chapters}[/]\n")
+    state_mgr.advance()
+    next_task = state_mgr.get_current()
+    if next_task:
+        console.print(f"[dim]Sıradaki: {next_task['book'].title} -> {next_task['chapter'].title}[/]\n")
 
-    for i, t in enumerate(tweets):
-        char_count = TweetFormatter.calculate_length(t)
-        badge = "[green]✓ Uygun[/]" if char_count <= 280 else "[red]✗ Limit Aşımı[/]"
-        console.print(Panel(t, title=f"Tweet {i + 1}/{len(tweets)} — {char_count}/280 {badge}", border_style="blue"))
 
-    success, tweet_ids, error = client.post_thread(tweets)
-    if success:
-        console.print(f"\n[bold green]✅ Başarıyla yayınlandı / simüle edildi![/] Tweet ID'leri: {tweet_ids}")
-        state_mgr.advance(tweet_id=tweet_ids[0] if tweet_ids else None)
-        next_task = state_mgr.get_next_task()
-        if next_task:
-            console.print(f"[dim]Sıradaki hedef: {next_task['book'].title} - Bölüm {next_task['chapter'].chapter_num}[/]\n")
-    else:
-        console.print(f"\n[bold red]❌ Tweet atılırken hata oluştu:[/] {error}\n")
+def cmd_interactive(args):
+    loader = BookLoader()
+    state_mgr = StateManager(book_loader=loader)
+
+    console.print(Panel(
+        "[bold cyan]💀 HoodReads İnteraktif Okuyucu[/]\n"
+        "[dim]Sıkılmadan, 3-4 sayfalık alt başlıklarla adım adım kitap oku.[/]\n\n"
+        "Komutlar:\n"
+        "  [bold green]Enter / 'n'[/] : Sıradaki alt başlık\n"
+        "  [bold yellow]'p'[/]         : Önceki alt başlık\n"
+        "  [bold red]'q'[/]         : Çıkış",
+        border_style="cyan"
+    ))
+
+    while True:
+        curr = state_mgr.get_current()
+        if not curr:
+            console.print("[bold red]Kitap kalmadı![/]")
+            break
+
+        book = curr["book"]
+        chapter = curr["chapter"]
+
+        console.print(CardFormatter.format_card(book, chapter))
+
+        try:
+            choice = Prompt.ask(
+                f"[bold magenta][{book.id} {chapter.chapter_num}/{book.total_chapters}][/] Sonraki (Enter/n), Önceki (p), Çıkış (q)",
+                default="n",
+                show_default=False
+            ).strip().lower()
+        except (KeyboardInterrupt, EOFError):
+            console.print("\n[dim]Okuma sonlandırıldı. Görüşürüz![/]\n")
+            break
+
+        if choice in ["q", "quit", "exit"]:
+            console.print("[dim]İlerlemen kaydedildi. İyi günler![/]\n")
+            break
+        elif choice in ["p", "prev", "previous"]:
+            state_mgr.previous()
+        else:
+            state_mgr.advance()
 
 
 def cmd_set_book(args):
@@ -114,47 +139,50 @@ def cmd_set_book(args):
 
     success = state_mgr.set_active_book(args.book_id, chapter_num=chapter_num)
     if success:
-        console.print(f"[bold green]Aktif kitap güncellendi:[/] '{args.book_id}', Bölüm: {chapter_num}")
+        console.print(f"[bold green]Aktif kitap güncellendi:[/] '{args.book_id}', Alt Başlık / Bölüm: {chapter_num}")
     else:
         console.print(f"[bold red]Hata:[/] '{args.book_id}' id'li kitap bulunamadı.")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="HoodReads — Books from the Hood (Twitter/X Bot)")
+    parser = argparse.ArgumentParser(description="HoodReads — Kişisel Sokak Kitaplığı Okuyucusu")
     subparsers = parser.add_subparsers(dest="command", help="Komutlar")
 
+    # read / next
+    p_read = subparsers.add_parser("read", help="Sıradaki alt başlığı oku ve ilerle")
+    subparsers.add_parser("next", help="Sıradaki alt başlığı oku (read ile aynı)")
+
+    # interactive
+    subparsers.add_parser("interactive", help="İnteraktif terminal okuyucusunu başlat")
+
     # list
-    subparsers.add_parser("list", help="Kütüphanedeki kitapları listele")
+    subparsers.add_parser("list", help="Kütüphanedeki kitapları ve ilerlemeni gör")
 
     # preview
-    p_preview = subparsers.add_parser("preview", help="Bir kitabın tüm sokak özetlerini gör")
+    p_preview = subparsers.add_parser("preview", help="Bir kitabın alt başlıklarını önizle")
     p_preview.add_argument("book_id", help="Kitap ID'si (örn: ddia, suc_ve_ceza, donusum, 1984)")
     p_preview.add_argument("--chapter", type=int, default=None, help="Sadece belirli bir ana bölümü göster (örn: --chapter 1)")
     p_preview.add_argument("--limit", type=int, default=None, help="İlk N alt başlığı göster (örn: --limit 5)")
 
-    # tweet
-    p_tweet = subparsers.add_parser("tweet", help="Sıradaki bölümü tweetle")
-    p_tweet.add_argument("--live", action="store_true", help="Gerçek Twitter hesabına at (varsayılan: simülasyon)")
-
     # set-book
     p_set = subparsers.add_parser("set-book", help="Aktif kitabı ve bölümü ayarla")
     p_set.add_argument("book_id", help="Kitap ID'si")
-    p_set.add_argument("--chapter", type=int, default=1, help="Başlanacak bölüm (varsayılan: 1)")
+    p_set.add_argument("--chapter", type=int, default=1, help="Başlanacak alt başlık no (varsayılan: 1)")
 
     args = parser.parse_args()
 
-    if args.command == "list":
+    if args.command in ["read", "next"]:
+        cmd_read(args)
+    elif args.command == "interactive":
+        cmd_interactive(args)
+    elif args.command == "list":
         cmd_list(args)
     elif args.command == "preview":
         cmd_preview(args)
-    elif args.command == "tweet":
-        cmd_tweet(args)
     elif args.command == "set-book":
         cmd_set_book(args)
     else:
-        # Default: show help and list
-        parser.print_help()
-        console.print("\n")
+        # Default: if no command passed, show list and offer read
         cmd_list(args)
 
 

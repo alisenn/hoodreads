@@ -1,9 +1,9 @@
 import pytest
 from src.models import Book, Chapter
-from src.formatter import TweetFormatter
+from src.formatter import CardFormatter
 
 
-def test_short_chapter_single_tweet():
+def test_card_formatter():
     book = Book(
         id="test_book",
         title="Test Kitap",
@@ -18,36 +18,9 @@ def test_short_chapter_single_tweet():
             )
         ]
     )
-    tweets = TweetFormatter.format_thread(book, book.chapters[0])
-    assert len(tweets) == 1
-    assert "Test Kitap" in tweets[0]
-    assert "Çaysız güne başlama." in tweets[0]
-    assert TweetFormatter.calculate_length(tweets[0]) <= 280
+    card = CardFormatter.format_card(book, book.chapters[0])
+    assert card is not None
 
-
-def test_long_chapter_splits_to_thread():
-    long_content = " ".join([
-        "Bu birinci çok uzun ve detaylı sokak anlatımı cümlesidir.",
-        "İkinci cümlede eleman kahveye gidip dayılarla okey oynamaya başlıyor.",
-        "Üçüncü cümlede polis sirenleri çalınca herkes taşları gizleyip masadan kaçışıyor.",
-        "Dördüncü cümlede ise bizimki mahallenin kedisini kucağına alıp hiçbir şey olmamış gibi ıslık çalıyor.",
-        "Beşinci cümlede nihayet olay yerinden uzaklaşıp evine doğru yavaş adımlarla yol alıyor."
-    ])
-    book = Book(
-        id="test_long",
-        title="Uzun Test Kitabı",
-        author="Yazar",
-        tagline="Slogan",
-        chapters=[
-            Chapter(
-                chapter_num=1,
-                title="Bölüm 1: Baskın",
-                content=long_content,
-                key_takeaway="Polis gelince okeyi bozma.",
-            )
-        ]
-    )
-    tweets = TweetFormatter.format_thread(book, book.chapters[0])
-    assert len(tweets) >= 1
-    for t in tweets:
-        assert TweetFormatter.calculate_length(t) <= 280
+    plain = CardFormatter.format_plain(book, book.chapters[0])
+    assert "Test Kitap" in plain
+    assert "Çaysız güne başlama." in plain
