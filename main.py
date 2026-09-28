@@ -47,13 +47,28 @@ def cmd_preview(args):
         console.print(f"[bold red]Hata:[/] '{args.book_id}' id'li kitap bulunamadı.")
         return
 
-    console.print(Panel(f"[bold yellow]{book.title}[/] - {book.author}\n[italic]{book.tagline}[/]", title="📖 Kitap Detayı", border_style="cyan"))
+    console.print(Panel(
+        f"[bold yellow]{book.title}[/] - {book.author}\n[italic]{book.tagline}[/]\nToplam Alt Başlık / Bölüm: [bold cyan]{book.total_chapters}[/]",
+        title="📖 Kitap Detayı",
+        border_style="cyan"
+    ))
 
-    for ch in book.chapters:
+    chapters = book.chapters
+    if getattr(args, "chapter", None):
+        prefix = f"{args.chapter}."
+        filtered = [c for c in chapters if c.title.startswith(prefix) or f"Bölüm {args.chapter}:" in c.title or c.chapter_num == args.chapter]
+        if filtered:
+            chapters = filtered
+
+    if getattr(args, "limit", None) and args.limit > 0:
+        chapters = chapters[:args.limit]
+
+    for ch in chapters:
         tweets = TweetFormatter.format_thread(book, ch)
         for idx, t in enumerate(tweets):
             len_info = f"({TweetFormatter.calculate_length(t)}/280 kar.)"
-            console.print(Panel(t, title=f"Bölüm {ch.chapter_num} (Tweet {idx + 1}/{len(tweets)}) {len_info}", border_style="green"))
+            panel_title = f"📌 {ch.title} [dim]({ch.chapter_num}/{book.total_chapters})[/] | Tweet {idx + 1}/{len(tweets)} {len_info}"
+            console.print(Panel(t, title=panel_title, border_style="green"))
 
 
 def cmd_tweet(args):
@@ -113,7 +128,9 @@ def main():
 
     # preview
     p_preview = subparsers.add_parser("preview", help="Bir kitabın tüm sokak özetlerini gör")
-    p_preview.add_argument("book_id", help="Kitap ID'si (örn: suc_ve_ceza, donusum, 1984)")
+    p_preview.add_argument("book_id", help="Kitap ID'si (örn: ddia, suc_ve_ceza, donusum, 1984)")
+    p_preview.add_argument("--chapter", type=int, default=None, help="Sadece belirli bir ana bölümü göster (örn: --chapter 1)")
+    p_preview.add_argument("--limit", type=int, default=None, help="İlk N alt başlığı göster (örn: --limit 5)")
 
     # tweet
     p_tweet = subparsers.add_parser("tweet", help="Sıradaki bölümü tweetle")
