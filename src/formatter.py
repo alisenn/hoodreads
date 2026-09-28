@@ -34,7 +34,7 @@ class TweetFormatter:
         #SokakKitaplığı #KitapÖzeti
         """
         header = f"📖 {book.title} ({chapter.chapter_num}/{book.total_chapters})\n📌 {chapter.title}\n\n"
-        footer = f"\n\n💡 {chapter.key_takeaway}\n#SokakKitaplığı #Kitap"
+        footer = f"\n\n💡 {chapter.key_takeaway}\n#HoodReads"
         return f"{header}{chapter.content}{footer}"
 
     @classmethod
@@ -48,7 +48,7 @@ class TweetFormatter:
             return [single]
 
         header = f"📖 {book.title} ({chapter.chapter_num}/{book.total_chapters})\n📌 {chapter.title}\n\n"
-        footer = f"\n\n💡 {chapter.key_takeaway}\n#SokakKitaplığı"
+        footer = f"\n\n💡 {chapter.key_takeaway}\n#HoodReads"
         short_footer = f"\n\n💡 {chapter.key_takeaway}"
 
         words = chapter.content.split()

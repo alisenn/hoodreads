@@ -1,28 +1,43 @@
-# 📚 Sokak Ağzıyla Kitap Özeti Botu (Twitter / X)
+# 💀 HoodReads — Books from the Hood
 
-Kitapları daha az sıkıcı hale getirmek ve herkesin anlayacağı şekilde kafaya sokmak için tasarlanmış **"Sokak Ağzıyla Kitap Botu"**.
+> **Goodreads, but from the hood.**  
+> Unfiltered, funny, bite-sized street summaries of classic literature and heavy engineering books, formatted for Twitter / X threads.
 
-Dünya klasiklerini ve popüler kitapları baştan sona bölümlere ayırır, her bölümü 3-5 cümlelik komik sokak ağzıyla anlatır ve Twitter'a (X) seri/thread olarak paylaşır.
+Stop falling asleep reading 600-page monographs. **HoodReads** deconstructs world classics and complex tech bibles (like Martin Kleppmann's *Designing Data-Intensive Applications*) into hilarious 3-4 page sub-topics narrated in raw, punchy street slang.
 
-Dışarıdan pahalı bir yapay zeka API'sine ihtiyaç duymadan, önceden hazırlanmış zengin sokak kütüphanesiyle veya asistanınızla ürettiğiniz yeni kitaplarla **ücretsiz ve tam kontrolde** çalışır.
-
----
-
-## 🎯 Özellikler
-
-- **Mizahi & Sokak Ağzı Anlatım**: Her bölüm 3-5 vurucu ve komik sokak cümlesi + günün hayat dersi ile özetlenir.
-- **Twitter Thread / Tek Tweet Uyumu**: Twitter'ın 280 karakter limitine göre otomatik hesaplama yapar. Uzun bölümleri kesintisiz thread (`1/2 🧵`, `2/2`) haline getirir.
-- **Sıralı İlerleme (State Tracking)**: Hangi kitabın kaçıncı bölümünde kalındığını `data/state.json` içinde hatırlar; her çalıştığında sonraki bölüme geçer, kitap bitince bir sonrakine geçer.
-- **DRY-RUN (Simülasyon) Modu**: Twitter API anahtarınız olmasa bile terminalde renkli panel arayüzüyle tüm tweetleri önizleyebilirsiniz.
-- **Canlı Twitter Modu**: `.env` dosyasına Twitter API v2 anahtarlarınızı ekleyerek gerçek hesabınıza tweet attırabilirsiniz.
+Zero paid LLM API required. Fully autonomous, thread-aware, state-tracked Twitter/X publishing engine with rich terminal previews.
 
 ---
 
-## 🚀 Başlangıç
+## ⚡ Features
 
-### 1. Bağımlılıkları Yükleyin
+- **Street-Level Wisdom**: Complex ideas explained in 3-5 punchy street sentences + a takeaway punchline.
+- **Bite-Sized Sub-Topics**: Heavy books are broken down by 3-4 page sections (`sf. 3-6`, `sf. 11-14`), not 50-page blobs.
+- **Twitter V2 & Thread Engine**: Automatically packs content into strict <= 280-character thread chunks (`1/2 🧵`, `2/2`).
+- **DRY-RUN Terminal Mode**: Beautiful CLI UI powered by `rich` to preview cards without needing Twitter API keys.
+- **Zero API Bills**: Runs standalone with curated book datasets, or easily extensible with your own books.
+
+---
+
+## 📚 The Hood Catalog
+
+| ID | Book | Author | Sub-Topics / Episodes | Vibe |
+| :--- | :--- | :--- | :---: | :--- |
+| `ddia` | **Designing Data-Intensive Applications** | Martin Kleppmann | 46 episodes | The 600-page distributed systems bible turned into street survival tactics. |
+| `suc_ve_ceza` | **Crime and Punishment** | Fyodor Dostoyevski | 6 episodes | Raskolnikov thinks he's Napoleon, axes a pawnbroker, suffers severe paranoia. |
+| `donusum` | **The Metamorphosis** | Franz Kafka | 4 episodes | Man wakes up as a giant cockroach and still stresses about missing the 7 AM train. |
+| `1984` | **1984** | George Orwell | 5 episodes | Big Brother surveillance state where even holding hands feels like carrying C4. |
+| `yabanci` | **The Stranger** | Albert Camus | 4 episodes | Slurps ice cream at mom's funeral, gets annoyed by the beach sun and shoots a guy. |
+| `kucuk_prens` | **The Little Prince** | Antoine de Saint-Exupéry | 4 episodes | Little prince planet-hops while laughing at how utterly stupid adults are. |
+
+---
+
+## 🚀 Quickstart
 
 ```bash
+# 1. Clone & Setup Virtualenv
+git clone https://github.com/alisenn/hoodreads.git
+cd hoodreads
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -30,77 +45,65 @@ pip install -r requirements.txt
 
 ---
 
-## 💻 Kullanım Komutları
+## 🕹️ CLI Usage
 
-### 1. Kütüphanedeki Kitapları Listele
+### 1. View Library
 ```bash
 python main.py list
 ```
 
-### 2. Bir Kitabın Sokak Ağzı Özetini Baştan Sona Oku
+### 2. Terminal Preview (No API Key Required)
 ```bash
-python main.py preview suc_ve_ceza
-# veya
+# Preview first 4 sub-topics of DDIA
+python main.py preview ddia --limit 4
+
+# Preview specific chapter (e.g. Chapter 1: Reliability & Scalability)
+python main.py preview ddia --chapter 1
+
+# Preview classic fiction
 python main.py preview donusum
-python main.py preview 1984
-python main.py preview yabanci
-python main.py preview kucuk_prens
 ```
 
-### 3. Sıradaki Bölümü Tweetle (Simülasyon / Dry-Run)
-Herhangi bir API key olmadan terminalde canlı tweet önizlemesi yapar:
+### 3. Post Next Episode (Dry-Run / Live)
 ```bash
+# Dry-run terminal simulation (default)
 python main.py tweet
-```
 
-### 4. Gerçek Twitter Hesabına Tweet Atma (Canlı)
-`.env` dosyasını yapılandırdıktan sonra:
-```bash
+# Live tweet to real Twitter account (reads keys from .env)
 python main.py tweet --live
 ```
 
-### 5. Aktif Kitabı veya Bölümü Değiştirme
+### 4. Switch Active Reading Target
 ```bash
-python main.py set-book 1984 --chapter 1
+python main.py set-book ddia --chapter 1
 ```
 
 ---
 
-## 📦 Mevcut Başlangıç Kitapları
+## ⚙️ Twitter API Configuration (Optional)
 
-1. **Suç ve Ceza (Fyodor Dostoyevski)** — Aşırı zekiyim triplerine girip tefeci teyzeyi indiren Raskolnikov'un vicdan azabıyla kafayı yeme serüveni.
-2. **Dönüşüm (Franz Kafka)** — Sabah kalkıp devasa bir böceğe dönüşen ama hala "işe nasıl yetişecem" diye dertlenen plazacı ruhlu Gregor'un dramı.
-3. **1984 (George Orwell)** — Her köşede mobese gibi Büyük Birader'in dikildiği, aşık olmanın bile vatan hainliği sayıldığı distopik kabus.
-4. **Yabancı (Albert Camus)** — Annesi vefat ettiğinde dondurma yiyip ertesi gün plajda güneşe sinirlenip adam vuran iflah olmaz gamsız Meursault.
-5. **Küçük Prens (Antoine de Saint-Exupéry)** — Uçağı çöle düşen pilot ile gezegen gezegen gezip "büyükler harbi kafasız" diyen sarı saçlı veledin felsefesi.
+Copy `.env.example` to `.env` and fill in your Twitter Developer Portal keys:
 
----
-
-## ➕ Yeni Kitap Ekleme
-
-Yeni kitap eklemek için `data/books/<kitap_id>.json` dosyası oluşturmanız veya asistanınıza *"Bana X kitabını sokak ağzıyla bölüm bölüm çıkar"* demeniz yeterlidir. JSON formatı:
-
-```json
-{
-  "id": "yeni_kitap",
-  "title": "Kitap Adı",
-  "author": "Yazar",
-  "tagline": "Tek cümlelik komik özet",
-  "chapters": [
-    {
-      "chapter_num": 1,
-      "title": "Bölüm 1: Başlık",
-      "content": "3-5 cümlelik sokak anlatımı...",
-      "key_takeaway": "Kısa ders"
-    }
-  ]
-}
+```ini
+TWITTER_API_KEY=your_api_key
+TWITTER_API_SECRET=your_api_secret
+TWITTER_ACCESS_TOKEN=your_access_token
+TWITTER_ACCESS_TOKEN_SECRET=your_access_token_secret
+TWITTER_BEARER_TOKEN=your_bearer_token
 ```
 
+If keys are absent, HoodReads gracefully falls back to **DRY-RUN** simulation mode.
+
 ---
 
-## 🧪 Testleri Çalıştırma
+## 🧪 Testing
 
 ```bash
 .venv/bin/pytest -v
 ```
+
+---
+
+## 📄 License
+
+MIT © [alisenn](https://github.com/alisenn)

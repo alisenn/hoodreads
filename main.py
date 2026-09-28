@@ -22,7 +22,7 @@ def cmd_list(args):
     active_id = state.get("current_book_id")
     curr_chapter = state.get("current_chapter_num", 1)
 
-    table = Table(title="📚 Sokak Kitaplığı — Mevcut Kitaplar", show_header=True, header_style="bold magenta")
+    table = Table(title="💀 HoodReads — Books from the Hood", show_header=True, header_style="bold magenta")
     table.add_column("ID", style="cyan", width=15)
     table.add_column("Kitap Adı", style="bold green", width=22)
     table.add_column("Yazar", style="yellow", width=20)
@@ -120,7 +120,7 @@ def cmd_set_book(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Sokak Ağzıyla Kitap Özeti Twitter Botu")
+    parser = argparse.ArgumentParser(description="HoodReads — Books from the Hood (Twitter/X Bot)")
     subparsers = parser.add_subparsers(dest="command", help="Komutlar")
 
     # list
