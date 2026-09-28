@@ -1,5 +1,5 @@
 {
-  "current_book_id": "1984",
+  "current_book_id": "ddia",
   "current_chapter_num": 2,
   "history": [
     {
@@ -7,7 +7,19 @@
       "chapter_num": 1,
       "posted_at": "2026-09-28T13:19:23.078702+00:00",
       "tweet_id": "sim_34814613"
+    },
+    {
+      "book_id": "ddia",
+      "chapter_num": 1,
+      "posted_at": "2026-09-28T13:43:47.161419+00:00",
+      "tweet_id": "sim_77645845"
+    },
+    {
+      "book_id": "ddia",
+      "chapter_num": 1,
+      "posted_at": "2026-09-28T13:44:18.037046+00:00",
+      "tweet_id": "sim_53964664"
     }
   ],
-  "last_posted_at": "2026-09-28T13:19:23.078702+00:00"
+  "last_posted_at": "2026-09-28T13:44:18.037046+00:00"
 }

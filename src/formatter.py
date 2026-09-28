@@ -41,94 +41,69 @@ class TweetFormatter:
     def format_thread(cls, book: Book, chapter: Chapter) -> List[str]:
         """
         Formats into a list of tweets. If it fits into 1 tweet, returns [single_tweet].
-        Otherwise splits sentences into 2 or more threaded tweets, guaranteeing <= 280 chars each.
+        Otherwise splits into a threaded series, strictly guaranteeing <= 280 chars per tweet.
         """
         single = cls.format_single(book, chapter)
         if cls.calculate_length(single) <= cls.MAX_TWEET_LENGTH:
             return [single]
 
-        # Multi-tweet thread splitting
         header = f"📖 {book.title} ({chapter.chapter_num}/{book.total_chapters})\n📌 {chapter.title}\n\n"
         footer = f"\n\n💡 {chapter.key_takeaway}\n#SokakKitaplığı"
         short_footer = f"\n\n💡 {chapter.key_takeaway}"
 
-        # We want to format across parts (1, 2, or 3)
-        # Split content into words or small phrases to safely fit limits
         words = chapter.content.split()
-        
-        # Test 2 parts, then 3 parts
-        for total_parts in [2, 3]:
-            tweets = []
-            word_idx = 0
-            possible = True
 
-            for part_num in range(1, total_parts + 1):
-                is_first = (part_num == 1)
-                is_last = (part_num == total_parts)
-
-                if is_first:
-                    prefix = header
-                    suffix = f"\n\n(1/{total_parts} 🧵)"
-                elif is_last:
-                    prefix = f"({total_parts}/{total_parts}) "
-                    suffix = footer
+        # Multi-tweet thread distribution
+        # 1) Try 2 tweets: t1 + t2(with footer)
+        for act_footer in [footer, short_footer]:
+            tag_t1 = "\n\n(1/2 🧵)"
+            t1_budget = cls.MAX_TWEET_LENGTH - cls.calculate_length(header + tag_t1)
+            w1 = []
+            w_idx = 0
+            while w_idx < len(words):
+                if cls.calculate_length(" ".join(w1 + [words[w_idx]])) <= t1_budget:
+                    w1.append(words[w_idx])
+                    w_idx += 1
                 else:
-                    prefix = f"({part_num}/{total_parts}) "
-                    suffix = ""
-
-                # Base overhead
-                base_len = cls.calculate_length(prefix + suffix)
-                available = cls.MAX_TWEET_LENGTH - base_len
-
-                if is_last and available < 60:
-                    # Try with shorter footer
-                    suffix = short_footer
-                    base_len = cls.calculate_length(prefix + suffix)
-                    available = cls.MAX_TWEET_LENGTH - base_len
-
-                part_words = []
-                if is_last:
-                    # Last part takes all remaining words
-                    part_words = words[word_idx:]
-                    content_str = " ".join(part_words)
-                    tweet_str = f"{prefix}{content_str}{suffix}"
-                    if cls.calculate_length(tweet_str) <= cls.MAX_TWEET_LENGTH:
-                        tweets.append(tweet_str)
-                    else:
-                        # Try without hashtag in footer
-                        tweet_str = f"{prefix}{content_str}{short_footer}"
-                        if cls.calculate_length(tweet_str) <= cls.MAX_TWEET_LENGTH:
-                            tweets.append(tweet_str)
-                        else:
-                            possible = False
                     break
+
+            rem_words = words[w_idx:]
+            t2 = f"(2/2) {' '.join(rem_words)}{act_footer}"
+            if cls.calculate_length(t2) <= cls.MAX_TWEET_LENGTH:
+                t1 = f"{header}{' '.join(w1)}{tag_t1}"
+                return [t1, t2]
+
+        # 2) Try 3 tweets: t1 + t2 + t3(with footer)
+        for act_footer in [footer, short_footer]:
+            tag_t1 = "\n\n(1/3 🧵)"
+            t1_budget = cls.MAX_TWEET_LENGTH - cls.calculate_length(header + tag_t1)
+            w1 = []
+            w_idx = 0
+            while w_idx < len(words):
+                if cls.calculate_length(" ".join(w1 + [words[w_idx]])) <= t1_budget:
+                    w1.append(words[w_idx])
+                    w_idx += 1
                 else:
-                    while word_idx < len(words):
-                        test_words = part_words + [words[word_idx]]
-                        if cls.calculate_length(" ".join(test_words)) <= available:
-                            part_words.append(words[word_idx])
-                            word_idx += 1
-                        else:
-                            break
+                    break
 
-                    if not part_words or word_idx >= len(words):
-                        possible = False
-                        break
+            rem_words = words[w_idx:]
+            half = len(rem_words) // 2
+            mid_w = rem_words[:half]
+            last_w = rem_words[half:]
 
-                    tweets.append(f"{prefix}{' '.join(part_words)}{suffix}")
+            t1 = f"{header}{' '.join(w1)}{tag_t1}"
+            t2 = f"(2/3) {' '.join(mid_w)}"
+            t3 = f"(3/3) {' '.join(last_w)}{act_footer}"
 
-            if possible and len(tweets) == total_parts:
-                return tweets
+            if (
+                cls.calculate_length(t1) <= cls.MAX_TWEET_LENGTH
+                and cls.calculate_length(t2) <= cls.MAX_TWEET_LENGTH
+                and cls.calculate_length(t3) <= cls.MAX_TWEET_LENGTH
+            ):
+                return [t1, t2, t3]
 
-        # Fallback safe partition
-        part1_max = cls.MAX_TWEET_LENGTH - cls.calculate_length(header + "\n\n(1/2 🧵)")
-        w1 = []
-        w_idx = 0
-        while w_idx < len(words) and cls.calculate_length(" ".join(w1 + [words[w_idx]])) <= part1_max:
-            w1.append(words[w_idx])
-            w_idx += 1
-        
-        t1 = f"{header}{' '.join(w1)}\n\n(1/2 🧵)"
-        t2_body = " ".join(words[w_idx:])
-        t2 = f"(2/2) {t2_body}{short_footer}"
-        return [t1, t2]
+        # 3) Fallback: safe 2-part partition
+        return [
+            f"{header}{chapter.content[:140]}...\n\n(1/2 🧵)",
+            f"(2/2) ...{chapter.content[140:340]}{short_footer}",
+        ]

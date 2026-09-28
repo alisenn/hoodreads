@@ -1,0 +1,80 @@
+{
+  "id": "ddia",
+  "title": "Designing Data-Intensive Applications",
+  "author": "Martin Kleppmann",
+  "tagline": "Sunucu çöktüğünde 'benim lokalde çalışıyordu' dememek için yazılmış 600 sayfalık dağıtık sistemler sokak rehberi.",
+  "chapters": [
+    {
+      "chapter_num": 1,
+      "title": "Bölüm 1: Güvenilirlik, Ölçeklenebilirlik, Sürdürülebilirlik",
+      "content": "Bizim yazılımcı milleti sisteme iki istek fazla gelince hemen 'AWS'e para basalım' kafasına giriyor. Martin reis diyor ki: Önce bir sakin ol, donanım patlar, disk yanar, elemanın biri kabloya takılır fişi çeker. Güvenilir sistem dediğin elektrik kesilse bile çaktırmadan yoluna devam eden sistemdir. Ölçeklenebilirlik de öyle her şeye mikroservis açmak değil; yük binince sistemin nefes darlığı çekmemesidir.",
+      "key_takeaway": "Sistemin yük altında ağlamıyorsa mimarin harbidir."
+    },
+    {
+      "chapter_num": 2,
+      "title": "Bölüm 2: Veri Modelleri ve Sorgu Dilleri",
+      "content": "Sektörde iki fırka var: Biri 50 yıllık SQL'e tapıp her şeyi tabloya bağlayanlar, diğeri 'Kanka NoSQL çok havalı JSON bas geç' diyen MongoDB fanboyları. Reis olayı çözmüş: Verin birbiriyle akraba gibi bağlıysa SQL kraldır, birbirinden bağımsız kafasına göre takılıyorsa doküman modeli candır. Hepsine körü körüne atlayan sonunda migration bataklığında boğulur.",
+      "key_takeaway": "Her soruna NoSQL çakmaya kalkan geceleri ağlayarak log inceler."
+    },
+    {
+      "chapter_num": 3,
+      "title": "Bölüm 3: Depolama ve Erişim (LSM vs B-Tree)",
+      "content": "Veriyi diske nasıl gömüyoruz mevzusu. Postgres ve MySQL dayılar 40 yıldır B-Tree kullanıyor; sayfaları güncelleyip duruyorlar. Ama yeni nesil LSM-Tree tayfası 'Kardeş diske rastgele yazma yapılmaz, arkaya append-only yapıştır geç' diyor. B-Tree okumada tokatlar, LSM-Tree ise deli gibi veri yazarken makineyi rahatlatır. Hangisi lazım bilmeden veritabanı seçmek tam kumar.",
+      "key_takeaway": "Okuma mı çok yazma mı çok bilmeden DB seçen cezasını çeker."
+    },
+    {
+      "chapter_num": 4,
+      "title": "Bölüm 4: Veri Kodlama ve Evrim (JSON vs Proto)",
+      "content": "JSON güzel, insan okuyor falan ama ağda gezerken kamyon gibi hantal kalıyor. Martin dayı 'Protocol Buffers ve Avro kullanın, veriyi ikili sıkıştırın' diyor. Bir de schema migration olayı var: Sen sisteme yeni alan eklersin, eski versiyondaki sunucu o alanı görünce kalp krizi geçirir. Geriye ve ileriye dönük uyumluluk yapmazsan deploy günü tüm prod çöker.",
+      "key_takeaway": "Deploy attığın gün sunucuların birbirine küsmesini istemiyorsan şemana sahip çık."
+    },
+    {
+      "chapter_num": 5,
+      "title": "Bölüm 5: Replikasyon (Lider-Takipçi Mevzuları)",
+      "content": "Tek sunucu yetmeyince veriyi kopyalıyoruz. Bir tane lider sunucu seçiyorsun, yazmaları o alıyor, takipçiler arkadan kopyalıyor. Ama lider patlarsa ne olacak? Kendi aralarında 'Yeni reis kim olsun' kavgası çıkıyor, buna split-brain diyorlar yani iki sunucu birden 'Reis benim' deyip ortalığı yakıyor. Ağ gecikmesi yüzünden kullanıcı eski veriyi görünce de kaos patlıyor.",
+      "key_takeaway": "İki kişi birden reis olmaya kalkarsa o sistemden hayır gelmez."
+    },
+    {
+      "chapter_num": 6,
+      "title": "Bölüm 6: Parçalama (Sharding ve Partitioning)",
+      "content": "Veri tek diske sığmayınca pastayı dilimleyip sunuculara paylaştırıyorsun. Ama dikkat etmezsen bütün millet aynı ünlü kullanıcının sayfasına hücum edince tek bir sunucu alev alıyor, diğerleri yatıyor; buna sıcak nokta (hotspot) denir. Hash ile mi böleceksin aralıkla mı böleceksin iyi hesaplamazsan sharding seni vezir değil rezil eder.",
+      "key_takeaway": "Yükü adil dağıtmazsan tek bir sunucu nöbet tutar diğerleri yan yatar."
+    },
+    {
+      "chapter_num": 7,
+      "title": "Bölüm 7: Transaction'lar ve ACID Masalları",
+      "content": "Herkes diline dolamış: 'Bizim sistem ACID abi'. Aç bak bakalım izolasyon seviyen ne? Read Committed ile iki transaction aynı anda hesaptan para çekerse bakiye eksiye düşer, ruhun duymaz. Serializable izolasyon en temizi ama o da sistemi kağnı arabasına çevirir. Kısacası bedava öğle yemeği yok; güvenlik arttıkça hız düşer.",
+      "key_takeaway": "ACID'i tam bilmeden 'bize bişey olmaz' diyenin parası buharlaşır."
+    },
+    {
+      "chapter_num": 8,
+      "title": "Bölüm 8: Dağıtık Sistemlerin Baş Ağrıları",
+      "content": "Kitabın en efsane bölümü. Dağıtık sistemde her şey yalandır: Ağ paketleri kaybolur, switchler kafayı yer, JVM çöp toplayıcı (GC) araya girip sunucuyu 10 saniye dondurur. En bombası da sunucuların saatleri birbirini tutmaz. 'Ben önce yazdım' dersin ama saat farkından adamın işlemi seninkini ezer geçer. Kısacası networke asla güvenme.",
+      "key_takeaway": "Sunucuların saatine bile güvenilmeyen dünyada kimseye güvenmeyeceksin."
+    },
+    {
+      "chapter_num": 9,
+      "title": "Bölüm 9: Tutarlılık ve Fikir Birliği (Consensus)",
+      "content": "Madem her şey çöküyor, bu sunucular nasıl ortak karar alacak? İşte burada devreye Consensus (Raft ve Paxos) giriyor. Çoğunluk (quorum) oyu olmadan kimse adım atamaz. 2-Phase Commit (2PC) gibi yöntemler de var ama koordinatör ölürse herkes eli kolu bağlı kalır. Zookeeper ve etcd arkada bu yüzden deli gibi çalışıyor.",
+      "key_takeaway": "Konsensüs zordur; çoğunluğu arkana almadan sisteme hükmedemezsin."
+    },
+    {
+      "chapter_num": 10,
+      "title": "Bölüm 10: Batch Processing (Toplu İşleme)",
+      "content": "Eski usul ama canavar: Unix felsefesini devasa kümelere taşıyan MapReduce ve modern Spark tayfası. Veri boyutları terabaytları aşınca tek tek sorgu atmak ameleliktir. Geceden işi verirsin, harita çıkarır, gruplar, sabah kahveni içerken tertemiz raporu masaya koyarsın. Deterministik ve hataya dayanıklı; biri çökerse baştan hesaplar biter.",
+      "key_takeaway": "Acele işe şeytan, büyük veriye batch processing karışır."
+    },
+    {
+      "chapter_num": 11,
+      "title": "Bölüm 11: Stream Processing (Akış İşleme)",
+      "content": "Geceyi bekleyecek vaktimiz yoksa ne yapacağız? Canlı akış (Kafka, Flink). Veri oluştukça borudan akar gibi sisteme giriyor. Event-driven mimaride veri gölüne değil akan nehre bakıyorsun. Ama buradaki tuzak: Olaylar sırayla mı geldi, geç mi kaldı, pencereleme (windowing) düzgün mü? Canlı yayın yaparken arkadan tren kaçırmamak lazım.",
+      "key_takeaway": "Veri su gibi akarken kepçeyle yakalamayı bilmeyen boğulur."
+    },
+    {
+      "chapter_num": 12,
+      "title": "Bölüm 12: Veri Sistemlerinin Geleceği",
+      "content": "Ve büyük final: Tek bir her şeyi yapan devasa veritabanı hayali artık öldü. Veritabanını parçalara ayırıp (unbundling), arama için Elasticsearch, önbellek için Redis, ana kayıt için Postgres koyup bunları event borularıyla bağlayacaksın. Bir de veri etiği var tabii; milletin verisini toplayıp patlatırsan mimarin ne kadar havalı olursa olsun mahkemede hesap verirsin.",
+      "key_takeaway": "En iyi mimari, tek bir mucizeye değil doğru parçaların ahengine güvenir."
+    }
+  ]
+}
