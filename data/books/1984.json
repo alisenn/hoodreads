@@ -1,0 +1,38 @@
+{
+  "id": "1984",
+  "title": "1984",
+  "author": "George Orwell",
+  "tagline": "Her köşede mobese kamerası gibi Büyük Birader'in dikildiği, aşık olmanın bile vatan hainliği sayıldığı distopik kabus.",
+  "chapters": [
+    {
+      "chapter_num": 1,
+      "title": "Bölüm 1: Büyük Birader Seni Dikizliyor",
+      "content": "Londra'da hava buz gibi, her sokakta 'Büyük Birader'in gözü üstünde' afişleri asılı, evlerdeki tele-ekranlar 7/24 insanları gözetleyip beyin yıkıyor. Bizim eleman Winston Smith, Hakikat Bakanlığı'nda çalışıp geçmişteki gazete haberlerini Partinin kafasına göre tahrif ediyor. Tele-ekranın görmediği kör bir köşede gizlice günlük tutmaya başlayarak sistemin bam teline basıyor.",
+      "key_takeaway": "Gizlice günlük tutmak bile kelle koltukta bir eylemdir."
+    },
+    {
+      "chapter_num": 2,
+      "title": "Bölüm 2: İki Dakikalık Nefret ve Julia",
+      "content": "İş yerinde her gün 'İki Dakikalık Nefret' seansı yapılıyor; herkes ekrandaki düşman Goldstein'a küfür kıyamet sövüp delirme taklidi yapıyor. Winston sırada dururken genç ve güzel Julia buna çarpıp eline gizlice 'Seni seviyorum' yazan bir not tutuşturuyor. Winston şok, 'Acaba düşünce polisi beni oltaya mı getiriyor' diye paranoyaya bağlıyor.",
+      "key_takeaway": "Baskı rejiminde aşk mektubu bile canlı bomba hissi verir."
+    },
+    {
+      "chapter_num": 3,
+      "title": "Bölüm 3: Yasak Aşk ve Sahte Güven",
+      "content": "Winston ve Julia ormanda, sonra da eski püskü bir antikacının çatı katında buluşmaya başlıyorlar. Gerçek kahve içip çikolata yiyerek partiye meydan okuyorlar; 'Beynimizi ele geçiremezler, içimizi değiştiremezler' diye triplere giriyorlar. O sırada O'Brien diye üst düzey bir parti üyesi bunlara yaklaşıp gizli direniş örgütü yalanıyla güvenlerini kazanıyor.",
+      "key_takeaway": "Gizli örgüt kuruyoruz diyen her kravatlıya güvenilmez."
+    },
+    {
+      "chapter_num": 4,
+      "title": "Bölüm 4: Baskın ve Oda 101",
+      "content": "Çatı katındaki resmin arkasından tele-ekran çıkıyor: 'Demek öyle ha!' Antikacı meğer gizli polismiş, odayı anında komandolar basıyor. Winston'ı Sevgi Bakanlığı'na tıkıyorlar. O'Brien bizzat işkenceci olarak karşısına çıkıyor: '2+2 kaç eder?' Winston '4' dedikçe elektrik veriyorlar, sonunda adam acıdan '5 de olur 10 da olur yeter ki vurmayın' noktasına geliyor.",
+      "key_takeaway": "Yeterince sopa yersen matematiği bile baştan yazarsın."
+    },
+    {
+      "chapter_num": 5,
+      "title": "Bölüm 5: Fareler ve Büyük Teslimiyet",
+      "content": "Son aşama: Oda 101. Burada insanın en büyük korkusuyla yüzleştiriyorlar. Winston'ın en büyük kabusu fareler. Yüzüne içinde aç fareler olan kafesi yaklaştırdıklarında Winston kırılma anını yaşıyor: 'Bana yapmayın, Julia'ya yapın! Onu parçalayın!' Ruhunu satıp çıkıyor; artık içi bomboş, kafede oturup cin yudumlarken Büyük Birader'i sahiden sevdiğini fark ediyor.",
+      "key_takeaway": "En kral direnişçi bile kafasına fare kafesi gelince satışı koyar."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "yabanci",
+  "title": "Yabancı",
+  "author": "Albert Camus",
+  "tagline": "Annesi vefat ettiğinde dondurma yiyip ertesi gün plajda güneşe sinirlenip adam vuran iflah olmaz gamsız Meursault.",
+  "chapters": [
+    {
+      "chapter_num": 1,
+      "title": "Bölüm 1: Annem Öldü Ama Hangi Gün Hatırlamıyorum",
+      "content": "Bizim gamsız Meursault hikayeye efsane bir giriş yapıyor: 'Bugün annem öldü. Belki de dün, bilmiyorum.' Cenaze evine gidiyor, herkes ağlayıp zırlarken bu kahve içip sigara tüttürüyor, hatta tabutun kapağını bile açtırmıyor. Ertesi gün şehre dönüp sevgilisi Marie ile komedi filmine gidip deniz sefası yapıyor. Herif tam bir vurdumduymazlık abidesi.",
+      "key_takeaway": "Toplumun beklediği rolü oynamazsan direk psikopat yaftası yersin."
+    },
+    {
+      "chapter_num": 2,
+      "title": "Bölüm 2: Plajdaki Kavga ve Güneş Çarpması",
+      "content": "Meursault, belalı komşusu Raymond'la takılmaya başlıyor. Birlikte deniz kenarında bir kulübeye gidiyorlar, orada Raymond'ın husumetli olduğu Arap gençlerle gerginlik çıkıyor. Herkes ayrılıyor ama Meursault elinde emanet tabancayla tek başına kumsala geri dönüyor. Güneş öyle bir parlıyor ki adamın beynini yakıyor; karşıda bıçak çeken elemana sırf güneş gözüne vurdu diye 5 el ateş ediyor.",
+      "key_takeaway": "Güneş gözlüğü takmadan kumsalda mevzuya girilmez."
+    },
+    {
+      "chapter_num": 3,
+      "title": "Bölüm 3: Mahkemede Cinayet Değil Tavır Yargılanıyor",
+      "content": "Mahkeme kuruluyor ama savcı cinayeti sormak yerine 'Bu adam annesinin cenazesinde ağlamadı, kahve içti, ertesi gün manitayla sinemaya gitti' diye ahlak bekçiliği yapıyor. Meursault da yalan söyleyip 'Çok pişmanım hakim bey' taklidi yapmıyor; 'Güneş vardı vurdum' deyince jüri bunu canavar ilan edip idama çarptırıyor.",
+      "key_takeaway": "Yalan söyleyemeyen adamı adalet sarayında çiğ çiğ yerler."
+    },
+    {
+      "chapter_num": 4,
+      "title": "Bölüm 4: Rahibe Ayar ve Özgürlük",
+      "content": "Hücrede idam gününü beklerken papaz gelip 'Oğlum tövbe et tanrıya sığın' diye darlıyor. Meursault sonunda patlayıp papazın yakasına yapışıyor; 'Hayatın hiçbir anlamı yok, hepimiz öleceğiz, beni kendi halime bırak!' diye bağırıyor. Papaz kaçınca içi inanılmaz bir huzurla doluyor, dünyanın saçmalığını kabullenip giyotine dimdik gidiyor.",
+      "key_takeaway": "Hayat anlamsızsa en azından son nefesinde dürüst öl."
+    }
+  ]
+}

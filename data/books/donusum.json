@@ -1,0 +1,32 @@
+{
+  "id": "donusum",
+  "title": "Dönüşüm",
+  "author": "Franz Kafka",
+  "tagline": "Sabah kalkıp devasa bir hamamböceğine dönüşen ama hala 'işe nasıl yetişecem' diye dertlenen plazacı ruhlu Gregor'un dramı.",
+  "chapters": [
+    {
+      "chapter_num": 1,
+      "title": "Bölüm 1: Günaydın, Artık Bir Böceksin",
+      "content": "Gregor Samsa bir sabah sıkıntılı rüyalardan uyanıyor, bi bakıyor ki yatakta devasa zırhlı bir böceğe dönüşmüş, onlarca minik bacak havada çırpınıyor. Normal insan 'Aman tanrım n'oldu bana' der değil mi? Bizim eleman 'Ulan 7 trenini kaçırdım, patron şimdi şirkette arkamdan konuşacak' diye panikliyor. Kölelik ruhuna işlemiş resmen.",
+      "key_takeaway": "Böcek olsan bile kapitalizm sana mesaiyi düşündürür."
+    },
+    {
+      "chapter_num": 2,
+      "title": "Bölüm 2: Patron Kapıya Dayanıyor",
+      "content": "Adam işe 1 saat gecikti diye şirket müdürü direkt Gregor'un evini basıyor, kapıyı yumrukluyor. Gregor çenesini kapının kilidine dayayıp kapıyı açınca müdür dehşete düşüp arkasına bakmadan topukluyor. Annesi bayılıyor, babası da baston ve gazeteyle Gregor'u tıslayarak odasına geri kovalıyor. Hoş geldin aile sevgisi.",
+      "key_takeaway": "Şirkete hayatını versen ilk arızanda kapıya müdür dikerler."
+    },
+    {
+      "chapter_num": 3,
+      "title": "Bölüm 3: Kardeş Grete ve Çürük Yemekler",
+      "content": "Gregor odada hapis, kız kardeşi Grete başta iyi niyetli davranıp odaya taze süt bırakıyor ama bizim böcek taze şeylerden tiksinip küflü peynirle çürük sebzelere yumuluyor. Kardeşi odayı boşaltırken annesi Gregor'u duvarda yapışık görüp yine bayılınca, eve gelen baba çıldırıp Gregor'un sırtına kütür kütür elma fırlatıyor. Elmalardan biri sırtına saplanıp kalıyor, acıdan felç.",
+      "key_takeaway": "Ailenin gözünde değerin eve getirdiğin ekmek kadardır."
+    },
+    {
+      "chapter_num": 4,
+      "title": "Bölüm 4: Kiracılar ve Hazin Son",
+      "content": "Para bitince aile eve 3 tane kibirli kiracı alıyor. Kardeşi keman çalarken Gregor sese dayanamayıp salona süzülüyor; kiracılar böceği görünce 'Kira mira vermiyoruz rezalet' deyip isyan çıkarıyor. Kardeşi 'Bundan kurtulmamız lazım artık o Gregor değil' diye kestirip atıyor. Sırtındaki elma çürüyen, kalbi kırılan Gregor gece boyu sessizce eriyip ruhunu teslim ediyor.",
+      "key_takeaway": "Faydan bitince en yakının bile seni süpürgeyle çöpe atar."
+    }
+  ]
+}

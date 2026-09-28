@@ -1,0 +1,44 @@
+{
+  "id": "suc_ve_ceza",
+  "title": "Suç ve Ceza",
+  "author": "Fyodor Dostoyevski",
+  "tagline": "Aşırı zekiyim triplerine girip tefeci teyzeyi indiren Raskolnikov'un vicdan azabıyla kafayı yeme serüveni.",
+  "chapters": [
+    {
+      "chapter_num": 1,
+      "title": "Bölüm 1: Parasızlık Başa Bela",
+      "content": "Bizim eleman Raskolnikov, St. Petersburg'un leş gibi tavan arasında 5 kuruşsuz yatıyor. Ev sahibesi kira diye kapıya dayanmış, bu da battaniyenin altında 'Ben Napolyon muyum yoksa ezik bir böcek miyim?' diye felsefe kasıyor. Kafada kurduğu plan tam bomba: Mahallenin tefeci teyzesini indirecek, paraları cukkalayıp dünyaya adalet getirecek. Vizyona bak sanki Robin Hood mübarek.",
+      "key_takeaway": "Kira ödeyemeyince kendini Napolyon sanmak tehlikelidir."
+    },
+    {
+      "chapter_num": 2,
+      "title": "Bölüm 2: Meyhane Muhabbeti ve Marmeladov",
+      "content": "Raskolnikov bunalımdan çıkmak için meyhaneye gidiyor, orada Marmeladov diye bir dayıyla tanışıyor. Dayı maaşı gömmüş, 'Kızım Sonya aileye baksın diye kendini feda etti ben de burada votka yuvarlıyorum' diye ağlıyor. Raskolnikov bunu dinleyince iyice depresyona bağlıyor; cemiyetin çivisi çıkmış, bu düzeni anca baltayla düzeltirim kafasına giriyor.",
+      "key_takeaway": "Meyhanede dert dinlemek adamı baltaya koşturur."
+    },
+    {
+      "chapter_num": 3,
+      "title": "Bölüm 3: Baltalı Baskın",
+      "content": "Geldik zurnanın zırt dediği yere. Bizimki paltonun içine baltayı bağlıyor, tefeci Alyona'nın kapısını çalıyor. Kadın rehin saate bakarken çat diye kafasına indiriyor; tam o sırada kadının masum kız kardeşi içeri girince panikten onu da harcıyor. Parayı da tam çalamıyor, 3-5 takı alıp kan ter içinde olay yerinden topukluyor. Mükemmel suç dedikleri şey ilk dakikadan fiyasko.",
+      "key_takeaway": "Plan yaparken beklenmeyen misafirleri hesaba katmayı unuttun mu patlarsın."
+    },
+    {
+      "chapter_num": 4,
+      "title": "Bölüm 4: Paronaya ve Komiser Porfiri",
+      "content": "Bizim dahi çocuk cinayetten sonra yataklara düşüyor, sayıklıyor, çaldığı malları da bir taşın altına gömüyor yani zerre hayrını görmüyor. Karakola çağrılınca bayılıyor, şüpheleri üstüne çekiyor. Komiser Porfiri tam bir çakal polis; 'Biliyorum sen yaptın koçum ama kendin itiraf edeceksin' diye elemanın beynini haşlıyor. Raskolnikov'un kafa 404 Not Found veriyor.",
+      "key_takeaway": "Polis senden zekiyse çaktırmadan delirme numarası tutmaz."
+    },
+    {
+      "chapter_num": 5,
+      "title": "Bölüm 5: Sonya ve İtiraf",
+      "content": "Vicdan azabı çocuğu öyle bir kemiriyor ki en sonunda gidip saf ve inançlı Sonya'ya 'Teyzeyi ben indirdim bacım' diye patlıyor. Sonya bunu ayıplamak yerine 'Git meydanın toprağını öp, millete rezil ol, cezanı çek arın' diyor. Bizim artist Napolyon sonunda paşa paşa karakola gidip 'Ben yaptım amirim' diyerek teslim bayrağını çekiyor.",
+      "key_takeaway": "Üstün insan teorisi Sibirya biletini kesene kadardır."
+    },
+    {
+      "chapter_num": 6,
+      "title": "Bölüm 6: Sibirya Sürgünü ve Aydınlanma",
+      "content": "Elemanı paketleyip Sibirya'ya kürek mahkumu olarak yolluyorlar. Sonya da peşinden gidiyor, fedakarlığın dibi. Raskolnikov başta hala havalı havalı 'Ben sadece kuralları yıkmak istedim' diye homurdansa da zamanla aşkın ve pişmanlığın gücüyle yumuşuyor, insan olmayı öğreniyor. Kısacası balta gitti, kafa yerine geldi.",
+      "key_takeaway": "Kafanda büyük teoriler kuracağına adam gibi yaşa."
+    }
+  ]
+}

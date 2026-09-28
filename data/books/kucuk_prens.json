@@ -1,0 +1,32 @@
+{
+  "id": "kucuk_prens",
+  "title": "Küçük Prens",
+  "author": "Antoine de Saint-Exupéry",
+  "tagline": "Uçağı çöle düşen pilot ile gezegen gezegen gezip 'büyükler harbi çok kafasız' diyen sarı saçlı veledin felsefesi.",
+  "chapters": [
+    {
+      "chapter_num": 1,
+      "title": "Bölüm 1: Çöle Düşüş ve Koyun Çizimi",
+      "content": "Pilotun uçağı Sahra Çölü'nün ortasında bozuluyor, su az tam hayatta kalma mücadelesi verirken nereden çıktığı belirsiz sarı saçlı bir ufaklık belirip 'Bana bir koyun çizsene birader' diyor. Pilot kutu çizip 'Koyun bunun içinde' deyince çocuk 'Tam aradığım şey eyvallah' diyor. Ufaklık B-612 adlı minik bir asteroitten gelmiş meğer.",
+      "key_takeaway": "Çölde karşına çıkan çocuğu ciddiye al, kutu çiz kurtul."
+    },
+    {
+      "chapter_num": 2,
+      "title": "Bölüm 2: Huysuz Gül ve Gezegen Turu",
+      "content": "Çocuğun gezegeninde kaprisli, egosu tavan bir gül varmış; 'Üşüdüm cam fanus koy, rüzgar esti kapat' diye çocuğu canından bezdirince prens dünyayı terk etmiş. Yolda kralla, kendini öven narsistle, yıldızları sayıp zengin olduğunu sanan iş adamıyla tanışıyor. Hepsine bakıp 'Büyüklerin kafası harbiden bir milyon, hepsi kafayı sıyırmış' diyor.",
+      "key_takeaway": "Trip atan gülle uğraşacağına gezegen değiştirmek daha mantıklıdır."
+    },
+    {
+      "chapter_num": 3,
+      "title": "Bölüm 3: Tilki ile Dostluk ve Gerçek Sevgi",
+      "content": "Dünyaya inince bir tilkiyle karşılaşıyor. Tilki buna hayat dersi veriyor: 'Beni evcilleştirirsen birbirimize özel oluruz; gözler kördür, esas güzellik kalple görülür.' Çocuk o zaman anlıyor ki kendi gülü kaprisli de olsa evrende tektir çünkü ona vakit harcamıştır. Sevdiğin şeyin sorumluluğunu alacaksın birader.",
+      "key_takeaway": "Emek vermediğin şeyin senin gözünde zerre değeri olmaz."
+    },
+    {
+      "chapter_num": 4,
+      "title": "Bölüm 4: Yılan ve Yıldızlara Dönüş",
+      "content": "Gülünü özleyen prens, çölde sarı bir zehirli yılanla anlaşıyor: 'Bedenim çok ağır, beni sok ki ruhum çiçeğimin yanına uçsun.' Pilot çocuğu kurtarmaya çalışsa da velet 'Ağlama, gökyüzündeki yıldızlara bakınca gülen çanlar duyacaksın' diyerek yılanın önüne atlıyor ve sessizce kuma yığılıyor. Hem hüzünlü hem kafası güzel bir vedalaşma.",
+      "key_takeaway": "Gönül bağı kurduğun şey için bedeli ne olursa olsun geri dönersin."
+    }
+  ]
+}
