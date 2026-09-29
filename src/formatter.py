@@ -12,10 +12,11 @@ class CardFormatter:
         header_text = f"[bold cyan]{book.title}[/] [dim]— {book.author}[/]\n"
         progress_text = f"[bold yellow]Bölüm {chapter.chapter_num} / {book.total_chapters}[/]\n\n"
         title_text = f"[bold white on blue] 📌 {chapter.title} [/]\n\n"
-        content_text = f"[bold white]{chapter.content}[/]\n\n"
+        story_label = "[bold yellow]📜 Olay & Tarihçe:[/]\n"
+        content_text = f"[white]{chapter.content}[/]\n\n"
         footer_text = f"[bold yellow]💡 Sokak Dersi:[/] [italic green]{chapter.key_takeaway}[/]"
 
-        full_text = f"{header_text}{progress_text}{title_text}{content_text}{footer_text}"
+        full_text = f"{header_text}{progress_text}{title_text}{story_label}{content_text}{footer_text}"
 
         return Panel(
             full_text,

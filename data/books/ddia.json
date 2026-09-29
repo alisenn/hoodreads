@@ -2,283 +2,283 @@
   "id": "ddia",
   "title": "Designing Data-Intensive Applications",
   "author": "Martin Kleppmann",
-  "tagline": "Sunucu çöktüğünde 'benim lokalde çalışıyordu' dememek için yazılmış, 3-4 sayfalık alt başlıklarla adım adım dağıtık sistemler rehberi.",
+  "tagline": "Tarihteki milyar dolarlık yazılım faciaları, atom saatleri ve Twitter'ı çökerten ünlülerle dağıtık sistemler sokak tarihi.",
   "chapters": [
     {
       "chapter_num": 1,
       "title": "1.1: Veri Sistemlerini Tanıyalım (sf. 3-6)",
-      "content": "Eskiden hayat basitti birader; bir veritabanı kurardın, sorgunu atar keyfine bakardın. Şimdi ortalık panayır yeri: Biri önbelleğe Redis koyuyor, diğeri aramaya Elasticsearch çakıyor, beriki araya Kafka borusu döşüyor. Martin dayı diyor ki: Artık tek başına veritabanı diye bir şey kalmadı, bu aletlerin hepsi bir araya gelip tek bir devasa veri sistemi oluşturuyor. Hepsini ayrı telden çalan saz arkadaşı gibi değil, koro gibi yöneteceksin.",
-      "key_takeaway": "Tek bir DB yetmez; doğru aletleri birbirine lehimlemeyi bileceksin."
+      "content": "Hikaye 1970'lerde Bell Labs'te başladı birader. Ken Thompson ve Dennis Ritchie bir odaya kapanıp Unix'i yazdığında felsefe basitti: 'Her program tek bir işi kusursuz yapsın, pipe ile birbirine bağla.' Aradan 50 yıl geçti, modern internet o kadar devasa bir canavara dönüştü ki tek bir veritabanı yetmez oldu. Şimdi bir web sitesine girdiğinde arkada 1970'lerin Unix mantığı çalışıyor: Arama için Elasticsearch, önbellek için Redis, kuyruk için Kafka bir araya gelip tek bir orkestra gibi çalıyor.",
+      "key_takeaway": "Tarih tekerrürden ibarettir; 50 yıllık Unix pipe felsefesi bugün devasa veri sistemlerini yönetiyor."
     },
     {
       "chapter_num": 2,
       "title": "1.2: Donanım Hataları (sf. 6-7)",
-      "content": "Bizim tayfa sunucuyu kurunca sanıyor ki o makine kıyamete kadar çalışacak. Halbuki sabit disklerin yıllık patlama oranı yüzde 5; yani bin sunucun varsa her hafta en az bir diskin cenazesi kalkıyor. RAM bozulur, elektrik kesilir, veri merkezini sel basar. Çözüm donanıma dua etmek değil; diskin yanacağını peşinen kabul edip yedekli ve hataya toleranslı yazılım mimarisi kurmaktır.",
-      "key_takeaway": "Donanım sana mutlaka ihanet eder; yazılımınla arkasını topla."
+      "content": "1947 yılında Harvard'da Mark II bilgisayarı aniden sapıttı. Mühendis Grace Hopper kapağı bir açtı ki ne görsün: İki rölenin arasına sıkışıp yanan gerçek bir güve böceği! Bilgisayar tarihindeki ilk 'bug' işte böyle çıktı. Bugün böcekler değil ama hard diskler yanıyor; Google'ın devasa veri merkezlerinde her gün yüzlerce disk mefta oluyor. Martin dayı diyor ki: Donanım tanrısına dua etmeyi bırak, diskin yanacağını peşinen kabul edip hatayı tolere eden mimari kur.",
+      "key_takeaway": "İlk bug 1947'de röleye sıkışan güveydi; donanım o günden beri bize ihanet etmeye devam ediyor."
     },
     {
       "chapter_num": 3,
-      "title": "1.3: Yazılım Hataları (sf. 8-9)",
-      "content": "Donanım patlaması tek bir sunucuyu götürür ama yazılım bug'ı bütün filoyu aynı anda intihara sürükler. Mesela saat sıçramasını hesaba katmazsın, 31 Aralık gecesi bütün sunucular kilitlenir. Ya da kontrolsüz bir sonsuz döngü işlemciyi yüzde yüz yer, arkasından gelen istekler zincirleme reaksiyonla diğer düğümleri devirir. Martin diyor ki: Hata kaçınılmazdır ama sistemin toplu intihar etmesini engellemek senin elinde.",
-      "key_takeaway": "Tek bir bug'ın domino taşı gibi tüm sistemi devirmesine izin verme."
+      "title": "1.3: Yazılım Hataları & Artık Saniye Faciası (sf. 8-9)",
+      "content": "Tarih: 30 Haziran 2012 gecesi saat 23:59:59. Dünyanın dönüşü yavaşladığı için atom saatlerine 1 saniyelik 'artık saniye' (leap second) eklendi. Normalde kimsenin ruhu duymaz değil mi? Ama Linux çekirdeğindeki bir zamanlama bug'ı yüzünden aynı saniyede Reddit, LinkedIn, Yelp ve Qantas Havayolları aynı anda yere çakıldı! Qantas'ın Avustralya'daki tüm bilet ve uçuş sistemleri saatlerce kilitlendi. Donanım sağlamdı ama tek bir saniyelik yazılım hesabı dünyayı felç etti.",
+      "key_takeaway": "1 saniyelik zaman sapması dev şirketleri yere serer; yazılım hataları zincirleme intihardır."
     },
     {
       "chapter_num": 4,
-      "title": "1.4: İnsan Hataları (sf. 9-11)",
-      "content": "Sistemleri en çok ne çökertir biliyor musun? Hackerlar değil, cuma akşamı yanlış konfigürasyon pushlayan uykusuz mühendis. Araştırmalara göre büyük kesintilerin ana sebebi insan hatası. Çözüm elemana fırça kaymak değil; sandbox ortamı kurmak, test otomasyonunu zorunlu kılmak ve hata yapmayı imkansız kılan mekanizmalar inşa etmektir. Prod veritabanında elle sorgu çalıştıranın eli yanar.",
-      "key_takeaway": "İnsana güvenme; prod'u koruyan emniyet kemerlerini sıkı bağla."
+      "title": "1.4: İnsan Hataları & Knight Capital Faciası (sf. 9-11)",
+      "content": "Tarihin en ibretlik insan hatası: 1 Ağustos 2012 sabahı. Wall Street devi Knight Capital yeni işlem yazılımı deploy ediyordu. Sistem yöneticisi arkadaş kodu 8 sunucudan 7'sine attı ama 8. sunucuyu unuttu! Piyasa açıldığı an o unutulan eski sunucu kafayı yedi, 45 dakikada kontrolsüz 4 milyon hatalı hisse alım-satımı yaptı. Şirket 45 dakikada tam 440 milyon dolar (dakikada 10 milyon $) batırıp iflas bayrağını çekti. Cuma akşamı prod'a elle dokunanın sonu budur.",
+      "key_takeaway": "45 dakikada 440 milyon dolar buharlaştı; insan hatasını engelleyen otomatik emniyet kemeri şarttır."
     },
     {
       "chapter_num": 5,
-      "title": "1.5: Yükü Tanımlamak & Twitter Fan-out (sf. 11-14)",
-      "content": "Twitter'ın yaşadığı meşhur dram: Normal bir gariban tweet atınca 100 takipçisinin anasayfasına yazmak çocuk oyuncağı. Ama Lady Gaga veya Ronaldo gibi 100 milyon takipçili biri tweet attığında arkadaki sunucular alev alıyor. İşte buna 'fan-out' yükü denir. Martin diyor ki: 'Sistem hızlı mı' diye sormadan önce 'Sistemin sırtındaki yük parametreleri nedir' diye soracaksın.",
-      "key_takeaway": "Yükü rakamla ölçmeyen adam performans tahmini yapamaz."
+      "title": "1.5: Yükü Tanımlamak & Twitter'ın Fail Whale Dönemi (sf. 11-14)",
+      "content": "2008-2010 yıllarını hatırlayanlar bilir; Twitter'da günde beş kere kuşların taşıdığı meşhur 'Fail Whale' balinası çıkardı. Olay şuydu: Sıradan bir kullanıcı tweet atınca sıkıntı yoktu. Ama Lady Gaga veya Justin Bieber tweet attığında, sistem aynı anda 50 milyon takipçinin gelen kutusuna o tweeti kopyalamaya çalışıyordu (fan-out felaketi) ve veri merkezi alev alıyordu. Twitter mühendisleri mimariyi baştan yıktı: Artık ünlülerin tweetleri kopyalanmıyor, kullanıcı timeline'ı açtığında dinamik birleştiriliyor.",
+      "key_takeaway": "Lady Gaga koca Twitter'ı balinaya bindirdi; yükün karakterini bilmeyen mimari çöker."
     },
     {
       "chapter_num": 6,
-      "title": "1.6: Performansı Ölçmek & P99 Latans (sf. 14-17)",
-      "content": "Patron gelir 'Sitemiz ortalama 200 milisaniyede açılıyor abi çok iyiyiz' der. Martin dayı arkadan bıyık altından güler: Ortalama (mean) koca bir yalandır! Sana asıl lazım olan percentiles: P95, P99, P99.9. En çok para bırakan, sepeti en dolu VIP kullanıcılar genelde en ağır sorguları attığı için o yüzde 1'lik kuyruk gecikmesini (tail latency) yaşarlar. Kuyruktaki kullanıcıyı üzen kasayı boş bulur.",
-      "key_takeaway": "Ortalamayla avunma; P99 gecikmesine bakıp gerçekle yüzleş."
+      "title": "1.6: Performansı Ölçmek & Amazon'un 100ms Kuralı (sf. 14-17)",
+      "content": "2006 yılında Amazon efsane bir deney yaptı: Sayfa yüklenme süresini bilerek her 100 milisaniye geciktirdiler. Sonuç şok ediciydi: Her 100 ms gecikme, şirketin toplam satışlarında yüzde 1 düşüşe sebep oluyordu! Yıllık yüz milyonlarca dolar kayıp demek. Patronlar 'Ortalama hızımız iyi' diye uyurken, en zengin ve sepeti en dolu kullanıcılar (P99 kuyruk gecikmesini yaşayanlar) yavaşlıktan bıkıp siteyi terk ediyordu. O günden beri silikon vadisinde tek kural vardır: Ortalamayı boşver, P99'a bak.",
+      "key_takeaway": "Amazon 100 milisaniyelik gecikmede milyon dolarlar kaybetti; P99 senin en zengin müşterindir."
     },
     {
       "chapter_num": 7,
       "title": "1.7: Yükle Başa Çıkma: Dikey vs Yatay Büyüme (sf. 17-19)",
-      "content": "Yük binince iki yolun var: Ya parayı basıp NASA bilgisayarı gibi devasa tek bir makine alacaksın (vertical scaling / scale up), ya da yan yana 50 tane ucuz makine dizip yükü paylaştıracaksın (horizontal scaling / scale out). Dikey büyüme bir noktada duvara toslar ve cep yakar; yatay büyüme ise dağıtık sistem cehennemine kapı açar. İkisinin dengesini kuramayan şirketler sunucu faturası öderken batar.",
-      "key_takeaway": "Tek makineye sonsuza kadar ram ekleyemezsin; dağıtık düşünmeyi öğren."
+      "content": "İnternetin ilk yıllarında şirketler 'Scale Up' yani dikey büyümeye tapardı. Sunucu mu yavaşladı? Sun Microsystems'e milyon dolar bayılıp buzdolabı büyüklüğünde dev makineler alırlardı. Ta ki Google sahneye çıkana kadar! Google dedi ki: 'Biz tek bir pahalı canavar almayacağız; marketten aldığımız binlerce ucuz, dandik bilgisayarı birbirine bağlayacağız (Scale Out).' Biri yanarsa yansın, yazılım arkadan toplasın dediler ve bilişim dünyasının kaderini sonsuza dek değiştirdiler.",
+      "key_takeaway": "Google pahalı tek makineleri tarihe gömdü; ucuz makinelerle ordu kurmayı başaran kazandı."
     },
     {
       "chapter_num": 8,
-      "title": "1.8: Bakım Kolaylığı: Sadelik ve Evrilebilirlik (sf. 19-23)",
-      "content": "Bir yazılımın masrafının yüzde 80'i yazarken değil, sonraki 5 yıl bakımını yaparken çıkar. Kod karmaşıklaştıkça kimse dokunmaya cesaret edemez, 'Aman çalışan kodu bozma' korkusuyla şirket kilitlenir. Martin diyor ki: Soyutlamaları (abstraction) iyi yap, gereksiz artistlik mimarilerden kaçın. En kral mimari, 6 ay sonra işe giren junior'ın bile korkmadan geliştirebildiği mimaridir.",
-      "key_takeaway": "Akıllı yazılımcı karmaşık değil, bakımı çocuk oyuncağı olan kod yazar."
+      "title": "1.8: Bakım Kolaylığı & Spagetti Kod Mirası (sf. 19-23)",
+      "content": "1999 yılında NASA'nın Mars Climate Orbiter uzay aracı 10 aylık yolculuktan sonra Mars'a ulaştı ve saniyeler içinde atmosferde yanıp kül oldu ($327 milyon çöp!). Sebebi neydi biliyor musun? Lockheed Martin mühendisleri itme gücünü İngiliz ölçü birimiyle (pound-force) hesaplamıştı, NASA'nın yazılımı ise metrik sistem (Newton) bekliyordu! Kod o kadar karmaşık ve dökümansızdı ki kimse aradaki farkı fark etmemişti. Basitlik ve okunabilirlik hayat kurtarır.",
+      "key_takeaway": "327 milyon dolarlık uzay aracı kod karmaşasından Mars'a çakıldı; sadelik lüks değil hayatta kalma kuralıdır."
     },
     {
       "chapter_num": 9,
-      "title": "2.1: NoSQL'in Doğuşu ve Nesne-İlişki Uyuşmazlığı (sf. 27-31)",
-      "content": "90'lardan beri dünya ilişkisel SQL veritabanlarına tapıyordu. Sonra web patlayınca millet dedi ki: 'Yahu ben kodumda JSON gibi nesnelerle çalışıyorum, veritabanına kaydederken 10 tane tabloya bölüp JOIN atmak canımı çıkarıyor (Object-Relational Mismatch).' İşte bu çileden NoSQL akımı doğdu. Büyük veri, esnek şema ve bedava yatay büyüme vaadiyle piyasayı fethetti.",
-      "key_takeaway": "İlişkisel tablolar nesne modellerine dar gelince NoSQL bayrağı çekti."
+      "title": "2.1: NoSQL'in Doğuşu & Edgar Codd'un İsyanı (sf. 27-31)",
+      "content": "1970'te IBM laboratuvarlarında Edgar F. Codd adında bir matematikçi vardı. O zamanlar hiyerarşik veritabanları vardı ve bir veriyi bulmak için diskin neresinde olduğunu elle işaretçilerle (pointer) aramak gerekiyordu. Codd 'Yeter lan bu amelelik' dedi ve ilişkisel modeli (SQL) icat etti: Tablolar ve deklaratif sorgular! Aradan 30 yıl geçti, web 2.0 patlayınca bu sefer Google (Bigtable) ve Amazon (Dynamo) 'SQL bize dar geliyor' deyip NoSQL isyanını başlattı.",
+      "key_takeaway": "1970'te Codd SQL ile devrim yaptı; 2000'lerde internet devleri NoSQL ile ikinci ihtilali başlattı."
     },
     {
       "chapter_num": 10,
-      "title": "2.2: Bire-Çok ve Çoka-Çok İlişkiler (sf. 32-35)",
-      "content": "LinkedIn profilini düşün: Bir kullanıcının birden fazla iş deneyimi ve eğitimi var (1-to-many). Doküman veritabanı (MongoDB) bunu tek bir JSON belgesine gömüp jet hızıyla okur. Ama işin içine yetenekler, şirketler ve tavsiyeler girince (many-to-many), doküman modeli patlar! Çünkü aynı şirketin adını bin yere kopyalamak zorunda kalırsın, şirket adı değişince ortalık yangın yerine döner.",
-      "key_takeaway": "İlişkiler karmaşıklaştıkça doküman modeli tıkanır, JOIN'e muhtaç kalırsın."
+      "title": "2.2: Bire-Çok & Apollo 11'in Doküman Çilesi (sf. 32-35)",
+      "content": "1969'da insanlığı aya götüren Apollo 11 projesinde IBM'in IMS veritabanı kullanılıyordu. Roketin milyonlarca parçasını hiyerarşik doküman modeliyle ağaç gibi dizmişlerdi; bir modülün altındaki parçaları listelemek harikaydı (1-to-many). Ama ne zaman ki 'Hangi parça hangi tedarikçiden geldi' sorusu soruldu (many-to-many), sistem tıkandı! Çünkü aynı tedarikçi bin yere kopyalanmıştı. Bugün MongoDB kullananlar da aynı 1969 tuzağına düşüp duruyor.",
+      "key_takeaway": "1969'da Apollo projesini terleten ilişki modeli bugün hala NoSQL yazanları terletiyor."
     },
     {
       "chapter_num": 11,
-      "title": "2.3: Günümüzde SQL vs NoSQL Karşılaştırması (sf. 36-40)",
-      "content": "Artık fanboyluğu bırakma vakti. Doküman veritabanları (schema-on-read) sana esneklik verir; şemayı önceden zorlamazsın, okurken yorumlarsın. SQL ise (schema-on-write) kapıdaki fedai gibidir; yanlış veri tipini içeri sokmaz. Martin diyor ki: Biri diğerini öldürmedi; hatta Postgres içine JSON desteği getirdi, MongoDB transaction ekledi. Aklı başında mühendis ihtiyaca göre melez (polyglot) gider.",
-      "key_takeaway": "SQL mi NoSQL mi kavgası bitti; ikisini harmanlayan zafere ulaşır."
+      "title": "2.3: SQL vs NoSQL Melezleşmesi (sf. 36-40)",
+      "content": "2010'ların başında sektörde tam bir tarikat savaşı vardı: SQLciler 'NoSQL çöp, ACID yok' diye bağırıyordu, NoSQLciler 'SQL dinozor, ölçeklenmiyor' diyordu. Sonra ne oldu? 2012'de PostgreSQL içine efsane bir JSONB tipi getirdi; hem ilişkisel tablo hem NoSQL dokümanını aynı anda jet gibi çalıştırdı. MongoDB de tıpış tıpış çoklu-belge transaction desteği ekledi. Sonuç: Fanboylar birbirini yerken akıllı mühendisler melez (polyglot) mimariye geçti.",
+      "key_takeaway": "Fanatizm öldürür; en kral mühendis Postgres'in SQL'i ile JSON esnekliğini birleştiren mühendistir."
     },
     {
       "chapter_num": 12,
-      "title": "2.4: Bildirici (Declarative) Sorgu Dilleri (sf. 41-44)",
-      "content": "SQL neden 50 yıldır ölmüyor biliyor musun? Çünkü bildiricidir (declarative). Sen veritabanına 'Bana İstanbul'daki kullanıcıları getir' dersin; arkada for döngüsü mü açacak, hangi indexe bakacak sen karışmazsın. Emir kipli (imperative) dillerde ise her adımı tek tek kodlarsın. Veritabanının sorgu optimizer'ı senin 10 satırda yazdığın döngüyü 100 kat daha optimize çalıştırır.",
-      "key_takeaway": "Nasıl yapacağını değil ne istediğini söyle; optimize işini motora bırak."
+      "title": "2.4: Bildirici Sorgular & SQL'in 50 Yıllık Zaferi (sf. 41-44)",
+      "content": "Tarihte yüzlerce programlama dili öldü gitti ama 1974'te doğan SQL hala tahtında oturuyor. Neden? Çünkü emir kipiyle değil, bildirimle çalışır. Sen motora 'Şu for döngüsünü aç, şu diziyi tara' demezsin; 'Bana şu koşula uyanları ver' dersin. 1970'lerin System R optimizer'ından bugünün modern sorgu planlayıcılarına kadar veritabanı senin yerine en hızlı matematiksel yolu hesaplar. SQL'in ölmemesinin sırrı zekayı motora devretmesidir.",
+      "key_takeaway": "1974'ten beri kral değişmedi; nasıl yapılacağını motora bırak, ne istediğini söyle."
     },
     {
       "chapter_num": 13,
-      "title": "2.5: Graf Veri Modelleri: Cypher ve Özellik Grafları (sf. 48-52)",
-      "content": "Sosyal ağlar, sahtekarlık tespiti (fraud) veya yol tarifleri gibi her şeyin birbiriyle örümcek ağı gibi bağlı olduğu senaryolarda SQL'de 15 tane JOIN yazarsan sunucu bayılır. İşte burada Graf veritabanları (Neo4j) devreye giriyor. Düğümler (nodes) ve kenarlar (edges) vardır; sorguyu Cypher diliyle bir arkadaşın arkadaşına fırtına gibi ulaştırıp saniyesinde cevabı alırsın.",
-      "key_takeaway": "İlişkinin kendisi veri kadar önemliyse graf veritabanı rakipsizdir."
+      "title": "2.5: Panama Belgeleri & Graf Veritabanları (sf. 48-52)",
+      "content": "2016 yılında tarihin en büyük sızıntısı patladı: Panama Belgeleri! 11.5 milyon gizli finansal belge, offshore şirketler ve politikacıların kirli para ağları sızdı. Gazeteciler başta SQL tabloları arasında boğuldu; kim kimin ortağı, para hangi paravan şirketten kime aktı bulmak imkansızdı. Sonra Neo4j graf veritabanını devreye soktular. Düğümler (insanlar) ve çizgiler (şirket hisseleri) birleşti; tek bir Cypher sorgusuyla dünya liderlerinin gizli kasaları dakikalar içinde haritaya döküldü.",
+      "key_takeaway": "Panama belgeleri graf veritabanıyla çözüldü; ilişkiler karmaşıksa graf dünyayı aydınlatır."
     },
     {
       "chapter_num": 14,
-      "title": "3.1: Dünyanın En Basit Veritabanı & Hash İndeksleri (sf. 67-73)",
-      "content": "İnanmayacaksın ama iki satırlık Bash fonksiyonuyla append-only veritabanı yapabilirsin: echo key,value >> file. Yazması ışık hızındadır çünkü diskin sonuna ekler geçersin. Ama okuması ölümdür; en baştan taraman gerekir (O(N)). Bunu çözmek için RAM'de hash map tutarsın: Hangi anahtar diskin kaçıncı baytında (offset). Bitcask gibi veritabanları bu mantıkla yazma canavarına dönüşür.",
-      "key_takeaway": "Diske sürekli sona eklemek yazmayı hızlandırır ama RAM'de rehber ister."
+      "title": "3.1: Bitcask & İki Satır Bash'ten Doğan Veritabanı (sf. 67-73)",
+      "content": "Tarihin en şık mühendislik numaralarından biri: 2010'da Riak ekibi Bitcask depolama motorunu çıkardı. Fikir inanılmaz basitti: Gelen her yazmayı diskin sonuna kütük gibi append et (log). Diskte arama yapıp amele gibi vakit kaybetmemek için de RAM'de bir Hash Map tut: 'Ahmet anahtarı diskin 1420. baytında.' RAM'den offset'i al, diske tek bir seek atıp oku! Milyonlarca yazma işlemini ışık hızına çıkaran bu dahi fikir bugün bile yüksek hızlı log motorlarının temelidir.",
+      "key_takeaway": "En dahi mimariler en basit fikirlerden çıkar; diske sona ekle, RAM'de harita tut."
     },
     {
       "chapter_num": 15,
-      "title": "3.2: SSTables ve LSM-Tree Mucizesi (sf. 74-78)",
-      "content": "Veriyi sıralı tutarsan ne olur? İşte SSTable (Sorted String Table). Önce gelen yazmaları RAM'deki sıralı ağaçta (Memtable) tutarsın. RAM dolunca diske tek seferde sıralı bir blok olarak kusarsın. Arkada da compaction işlemi eski ve silinmiş kayıtları süpürüp dosyaları birleştirir. LevelDB, RocksDB ve Cassandra'nın kalbinde bu LSM-Tree mimarisi atar.",
-      "key_takeaway": "Sıralı yazmak diski yormaz; LSM-Tree yoğun yazma işlerinin ilacıdır."
+      "title": "3.2: Bigtable'dan RocksDB'ye LSM-Tree Devrimi (sf. 74-78)",
+      "content": "2006'da Google meşhur Bigtable makalesini yayınlayınca dünya yerinden oynadı. Google, web'in trilyonlarca sayfasını dizine eklerken geleneksel veritabanlarının diske rastgele yazma yaparken tıkandığını gördü. Patrick O'Neil'ın 1996 tarihli LSM-Tree teorisini hayata geçirdiler. Yazmayı önce RAM'deki ağaçta tut, sonra diske sıralı kütük (SSTable) olarak dök! Facebook daha sonra bunu alıp RocksDB yaptı; bugün modern fintech ve kripto altyapıları tamamen bu motorla dönüyor.",
+      "key_takeaway": "Google'ın Bigtable'ı LSM-Tree'yi diriltti; rastgele yazma bitti, sıralı akış çağı başladı."
     },
     {
       "chapter_num": 16,
-      "title": "3.3: B-Tree: 40 Yıllık Saltanat (sf. 79-84)",
-      "content": "LSM-Tree ne kadar genç ve asabi ise, B-Tree o kadar ağırbaşlı bir imparatordur. Diski 4 KB'lık sabit sayfalara böler, ağaç yapısıyla aradığın kaydı 3-4 adımda nokta atışı bulur. Veriyi güncellerken dosyanın sonuna eklemez, gider o sayfayı yerinde (in-place) ezer. Sayfa yarım yamalak yazılırken elektrik kesilmesin diye de Write-Ahead Log (WAL) ile kendini garantiye alır.",
-      "key_takeaway": "Rastgele okuma yapacaksan ve veriyi yerinde ezeceksen B-Tree babadır."
+      "title": "3.3: B-Tree & Boeing'in 1970 Mirası (sf. 79-84)",
+      "content": "1970 yılında Rudolf Bayer ve Edward McCreight, Boeing uçak şirketinde çalışırken devasa uçak parçalarının kataloglarını diske sığdıramıyordu. O gün kağıt üzerinde tasarladıkları ağaç yapısına 'B-Tree' adını verdiler. Aradan yarım asır geçti; bugün cebindeki iPhone'un SQLite veritabanından, bankaların ana çatısını tutan Oracle ve PostgreSQL'e kadar dünyadaki neredeyse tüm kurumsal veriler hala bu iki adamın 1970'te Boeing için çizdiği B-Tree sayfalarında saklanıyor.",
+      "key_takeaway": "Boeing için 1970'te çizilen B-Tree, 50 yıldır dünyanın tüm bankacılık verisini sırtında taşıyor."
     },
     {
       "chapter_num": 17,
-      "title": "3.4: B-Tree mi LSM-Tree mi? (sf. 85-88)",
-      "content": "Mühendislerin en sevdiği soru: Hangisi daha iyi? Kural basit: LSM-Tree yazma işlemlerinde tokatlar; çünkü diske sıralı yazar, yazma amplifikasyonu (write amplification) düşüktür. B-Tree ise okuma işlemlerinde ezer; çünkü her anahtar ağaçta tam olarak tek bir yerdedir, LSM gibi birden fazla seviyeyi aramak zorunda kalmazsın. İş yükünün karakterini bilmeyen yanlış ata oynar.",
-      "key_takeaway": "Yazma ağırlıklıysa LSM-Tree, tutarlı hızlı okuma gerekiyorsa B-Tree."
+      "title": "3.4: B-Tree vs LSM-Tree Savaşı (sf. 85-88)",
+      "content": "Bu iki mimarinin savaşı adeta otomobil yarışıdır. B-Tree 1970 model zırhlı bir Rolls-Royce gibidir: Her anahtar diskte tam tek bir yerdedir, okuma yaparken nokta atışı bulur ama diske yazarken sayfayı yerinde ezdiği için mekanik diski hırpalar. LSM-Tree ise Formula 1 aracıdır: Diske yazarken fırtına gibi sıralı akar ama aradığın veri henüz sıkıştırılmamış eski dosyalarda kalmışsa birkaç yere birden bakmak zorunda kalırsın.",
+      "key_takeaway": "B-Tree güvenli bir zırhlı araçtır, LSM-Tree ise yazma canavarı bir yarış arabası."
     },
     {
       "chapter_num": 18,
-      "title": "3.5: OLTP vs OLAP: İşlem mi Analiz mi? (sf. 94-98)",
-      "content": "Kullanıcı sipariş verirken çalışan sistemle, şirketin CFO'sunun 'Son 1 yılda en çok hangi ürün satıldı' raporu aynı yerde çalışmaz! Kullanıcı sistemi OLTP'dir: Az veri, milisaniyelik satır bazlı sorgular. Analiz sistemi OLAP'tır (Data Warehouse): Milyonlarca satırı tarar, toplam alır, ortalama hesaplar. Bu ikisini aynı veritabanına sokarsan rapor alan eleman canlı sipariş sistemini kilitler.",
-      "key_takeaway": "Canlı veritabanında analitik sorgu atan operasyonu baltalar; veri ambarı kur."
+      "title": "3.5: Walmart & Veri Ambarlarının Doğuşu (sf. 94-98)",
+      "content": "1980'lerde perakende devi Walmart rakiplerini nasıl ezip geçti biliyor musun? Teradata ile dünyanın ilk dev veri ambarını (Data Warehouse) kurdular. Kasadaki kasiyerin satış yaptığı sistemle (OLTP), genel merkezdeki yöneticinin 'Hangi eyalette fırtına çıkınca markette hangi bisküvi daha çok satılıyor' analizini (OLAP) birbirinden ayırdılar. Eğer canlı kasaların veritabanında bu analizi çalıştırsalardı kasalar kilitlenirdi; ambar mimarisi Walmart'ı dünya imparatoru yaptı.",
+      "key_takeaway": "Walmart analitiği canlı kasadan ayırarak imparator oldu; OLTP ile OLAP'ı asla aynı çatıya sokma."
     },
     {
       "chapter_num": 19,
-      "title": "3.6: Sütun Odaklı Depolama (Column-Oriented) (sf. 99-106)",
-      "content": "OLTP veritabanları satır satır saklar; bir satırdaki 50 sütunun hepsini diske dizer. Ama sen 'Milyar satırlık tabloda sadece fiyat sütununu toplayacağım' dersen diğer 49 sütunu boşuna disktan okursun. Çözüm: Kolon bazlı depolama (Parquet, ClickHouse, Redshift). Her sütunu ayrı saklar, deli gibi sıkıştırır (bitmap/run-length) ve analiz sorgularını ışık hızına çıkarır.",
-      "key_takeaway": "Analiz yapacaksan satırlardan vazgeçip sütun sütun düşüneceksin."
+      "title": "3.6: Sütun Odaklı Depolama & ClickHouse Efsanesi (sf. 99-106)",
+      "content": "Rusya'nın Google'ı sayılan Yandex, Metrica analitik sistemini kurarken milyarlarca web tıklamasını satır satır veritabanına kaydettiğinde sunucuların nefesi yetmedi. Alexey Milovidov ve ekibi oturdu, veriyi satır satır değil sütun sütun saklayan ClickHouse'u yazdı. 100 sütunlu tabloda sadece 'tıklama_tarihi' lazımsa disktan diğer 99 sütun hiç okunmuyor ve aynı veriler alt alta geldiği için 10 kat sıkışıyor. Analiz sorguları 10 dakikadan 20 milisaniyeye indi!",
+      "key_takeaway": "ClickHouse sütun depolamayla analitiği ışık hızına çıkardı; analitik yapıyorsan satırları unut."
     },
     {
       "chapter_num": 20,
-      "title": "4.1: JSON, XML ve İkili Formatlar (sf. 114-116)",
-      "content": "JSON dünyayı fethetti çünkü insan gözüyle okunabiliyor. Ama ağ üzerinden milyonlarca istek akarken JSON tam bir israftır: Her kayıtta alan isimlerini ('first_name', 'created_at') tekrar tekrar göndermek bant genişliğini sömürür, sayıları metin olarak kodlamak işlemciyi yorar. İkili formatlar (MessagePack, BSON) alanı sıkıştırsa da asıl devrim şema tabanlı sistemlerle gelir.",
-      "key_takeaway": "JSON geliştirirken tatlıdır ama yüksek trafikte bant genişliğini yer bitirir."
+      "title": "4.1: Mars Polar Lander & Şema Uyumsuzluğu (sf. 114-116)",
+      "content": "Tarihteki şema evrimi faciaları saymakla bitmez. Programlama dillerinin kendi gömülü serialization kütüphaneleri (Java Serializable, Python pickle, Ruby Marshal) tam bir saatli bombadır. Hem güvenlik açığı doludur (pickle yüklerken uzaktan kod çalıştırırlar), hem de koda yeni bir alan eklediğin anda eski versiyondaki sunucu nesneyi okuyamayıp patlar. Martin kleppmann uyarır: Asla dilin kendi serileştiricisine güvenip ağa veri basma.",
+      "key_takeaway": "Python pickle veya Java serializable ile ağa veri basan günün birinde hackerlara kapı açar."
     },
     {
       "chapter_num": 21,
-      "title": "4.2: Protobuf ve Thrift: Şema Evrimi (sf. 117-122)",
-      "content": "Google'ın Protocol Buffers ve Facebook'un Thrift icadı: Alan adlarını çöpe at, her alana bir etiket numarası (tag number 1, 2, 3) ver! Veri boyutu kuşa döner. Asıl büyü şema evrimindedir: Yeni alan eklersen yeni tag verirsin, eski sunucu bu tag'i tanımayınca çökmez görmezden gelir (backward compatibility). Böylece yüzlerce mikroservisi aynı anda durdurmadan deploy edebilirsin.",
-      "key_takeaway": "Tag numaralarıyla şema evrimi yaparsan deploy günü sıfır kesinti yaşarsın."
+      "title": "4.2: Google Protobuf & Sıfır Kesintili Deploy (sf. 117-122)",
+      "content": "2001 yılında Google'da arama motoru öyle bir hızla büyüyordu ki günde yüzlerce mikroservis güncelleniyordu. Bir sunucu eski versiyonda kalırken diğeri yenileniyordu. Jeff Dean ve Sanjay Ghemawat oturdular, Protocol Buffers'ı (Protobuf) yazdılar. Kural şuydu: Alan isimlerini gönderme, alanlara 1, 2, 3 gibi sayı etiketi (tag) ver. Eski sunucu bilmediği yeni tag'i görünce paniklemez, yok sayar geçer. Google bu basit etiket sistemi sayesinde 20 yıldır tek saniye kesinti yaşamadan deploy atıyor.",
+      "key_takeaway": "Google Protobuf etiketleriyle sıfır kesintili deploy devrimini başlattı."
     },
     {
       "chapter_num": 22,
-      "title": "5.1: Lider-Takipçi Replikasyonu (sf. 151-154)",
-      "content": "Veriyi çoğaltmanın (replication) en klasik yolu: Bir tane lider (master) seçersin. Bütün yazmalar lidere gider. Takipçiler (slaves/read replicas) liderin replikasyon günlüğünü okuyup kendi kopyalarını günceller. Kullanıcılar okuma yaparken takipçilere gider, böylece liderin sırtındaki okuma yükü hafifler. Sistem büyütmenin ilk adımı budur.",
-      "key_takeaway": "Yazmayı tek elde topla, okumayı takipçilere dağıt."
+      "title": "5.1: Master-Slave ve İsim Değişimi Tarihi (sf. 151-154)",
+      "content": "Veri çoğaltmada 40 yıldır 'Master-Slave' denilen kavram, aslında antik Roma'daki hiyerarşiden esinlenmişti: Bütün emirler tek bir efendiden çıkar, köleler sadece dinler ve kopyalar. Yazılım dünyası bu terimi terk edip 'Leader-Follower' demeye başladı. Mantık aynıdır: Yazma yetkisi tek bir reistedir. Takipçiler sadece arkadan replikasyon günlüğünü dinler. Sistem büyütmenin ve okuma yükünü paylaştırmanın ilk adımı budur.",
+      "key_takeaway": "Reis tek olur, okumalar paylaştırılır; 40 yıllık lider-takipçi modeli hala internetin omurgasıdır."
     },
     {
       "chapter_num": 23,
-      "title": "5.2: Senkron vs Asenkron Replikasyon (sf. 155-156)",
-      "content": "Lider veriyi takipçiye yazarken beklesin mi (senkron) yoksa 'ben yazdım arkadan gelirsin' deyip devam mı etsin (asenkron)? Senkron yaparsan tek bir takipçi interneti yavaşlayınca bütün yazma sistemi donar. Asenkron yaparsan hızlıdır ama lider o anda elektrik kesilip yanarsa henüz takipçiye ulaşmamış veriler sonsuza kadar buharlaşır. Çoğu sistem yarı-senkron uzlaşır.",
-      "key_takeaway": "Hız istiyorsan asenkronun veri kaybı riskini göze alacaksın."
+      "title": "5.2: GitHub'ın 2018 Okyanus Aşırı Kesintisi (sf. 155-156)",
+      "content": "21 Ekim 2018'de GitHub tam 24 saat boyunca dünya genelinde felç oldu. Olay neydi? ABD Doğu kıyısı ile Batı kıyısı arasındaki optik kabloda 43 saniyelik kısa bir kopma yaşandı. GitHub'ın veri tabanı replikasyonu asenkrondu; Doğu veri merkezi 'Batı lideri öldü' sanıp Doğu'yu lider ilan etti. Kablo geri geldiğinde iki tarafta da farklı yazmalar birikmişti; veriler o kadar çorba oldu ki mühendisler 24 saat boyunca elle veri kurtarmak zorunda kaldı.",
+      "key_takeaway": "43 saniyelik ağ kopması koca GitHub'ı 24 saat kilitledi; asenkron replikasyon şakaya gelmez."
     },
     {
       "chapter_num": 24,
-      "title": "5.3: Failover Felaketi ve Split-Brain (sf. 157-160)",
-      "content": "Lider sunucu kalp atışını kesince takipçiler 'Reis öldü' deyip aralarından yeni lider seçer (failover). Ama ya eski lider ölmediyse, sadece geçici bir ağ takılması yaşadıysa? O zaman iki sunucu birden kendini lider sanır (Split-Brain)! İkisi de farklı yazmaları kabul eder, veriler çorba olur. Dağıtık sistemlerin en korkulu kabuslarından biridir.",
-      "key_takeaway": "İki başlı ejderha sistemi yok eder; lider seçiminde taviz verilmez."
+      "title": "5.3: Split-Brain & İki Başlı Ejderha Laneti (sf. 157-160)",
+      "content": "Eski Yunan mitolojisinde kafası kesildikçe iki kafa çıkaran Hydra canavarı gibi, dağıtık sistemlerin de Hydra'sı Split-Brain'dir. Lider sunucu ağ takılması yaşar, diğerleri 'Reis öldü' deyip yeni lider seçer. Ama eski lider ölmemiştir! İki sunucu da kendini meşru padişah sanıp gelen yazmaları kabul eder. Veritabanının yarısı birine, diğer yarısı ötekine yazılır. Sonunda ikisinin de kellesini vurup sistemi manuel temizlemekten başka çare kalmaz.",
+      "key_takeaway": "İki padişah tek tahtta oturamaz; split-brain yaşayan sistemin faturası ağır ödenir."
     },
     {
       "chapter_num": 25,
-      "title": "5.4: Kendi Yazdığını Okuyamama Çilesi (sf. 161-164)",
-      "content": "Asenkron replikasyonun komik cilvesi: Kullanıcı profiline yeni fotoğraf yükler, sayfayı yeniler ama eski fotoğrafı görür! Çünkü yazma lidere gitmiştir ama sayfa yenileme henüz güncellenmemiş takipçiden okunmuştur. Kullanıcı 'Fotoğrafım nerede lan' diye desteği basar. Çözüm: Kullanıcının kendi değiştirdiği veriyi belirli bir süre doğrudan liderden okutmaktır (Read-Your-Writes Consistency).",
-      "key_takeaway": "Kullanıcıya kendi yaptığı değişikliği gecikmeli gösterirsen delirtirsin."
+      "title": "5.4: Facebook & Fotoğraf Yükleme Paradoksu (sf. 161-164)",
+      "content": "Facebook'un ilk yıllarında Mark Zuckerberg ve mühendisleri çok komik bir şikayet alıyordu: Kullanıcı profil fotoğrafını değiştiriyor, 'Kaydet'e basıyor, sayfa yenilenince eski fotoğrafı görüyordu! Kullanıcı panikle 10 kere üst üste fotoğraf yüklüyordu. Olay şuydu: Fotoğraf lider sunucuya yazılmıştı ama kullanıcının sayfası yakındaki replikadan okunuyordu ve aradaki replikasyon 2 saniye gecikmişti. Çözüm: Kendi değiştirdiğin profili ilk 1 dakika boyunca zorunlu olarak liderden okutmak oldu.",
+      "key_takeaway": "Kullanıcıya kendi yaptığı değişikliği gecikmeli gösterirsen delirtirsin; Read-Your-Writes şarttır."
     },
     {
       "chapter_num": 26,
-      "title": "5.5: Çok Liderli (Multi-Leader) Replikasyon (sf. 168-176)",
-      "content": "Avrupa ve Amerika'da iki ayrı veri merkezin varsa her yazmayı okyanus ötesine göndermek latansı felç eder. İki kıtaya da birer lider koyarsın (Multi-Leader). Yazmalar yerel lidere akar, sonra liderler birbirine eşitlenir. Ama aynı anda iki kıtada aynı veriye farklı değer yazılırsa ne olacak? Çatışma çözümü (conflict resolution) gerekir; ya son yazan kazanır (LWW) ya da özel kodla birleştirirsin.",
-      "key_takeaway": "Çok lider hız getirir ama çatışma çözümü başını ağrıtır."
+      "title": "5.5: Çok Liderli Sistemler & Git Çatışmaları (sf. 168-176)",
+      "content": "Çok liderli replikasyonu anlamak istiyorsan her gün kullandığın Git'e bak! Sen kendi bilgisayarında master branch'indesin (1. lider), arkadaşın kendi laptopunda (2. lider). İkiniz de aynı dosyanın aynı satırını değiştirip pushlarsanız ne olur? Git Merge Conflict! Dağıtık veritabanlarında da iki kıtadaki lider aynı kaydı güncellerse çatışma çıkar. Ya 'Son yazan kazanır' (LWW) deyip birinin verisini çöpe atarsın, ya da CRDT algoritmalarıyla otomatik birleştirirsin.",
+      "key_takeaway": "Çok liderli mimari Git çatışması gibidir; otomatik uzlaşma kuralın yoksa veri ezilir."
     },
     {
       "chapter_num": 27,
-      "title": "5.6: Lidersiz Replikasyon ve Quorum (Dynamo) (sf. 177-185)",
-      "content": "Amazon'un Dynamo tarzı felsefesi: 'Lider falan yok, herkes eşit birader!' Yazarken n tane düğümden w tanesine yazarsın, okurken r tanesinden okursun. Eğer w + r > n kuralı tutuyorsa, okuduğun düğümlerin en az birinde en güncel veri mutlaka vardır (Quorum). Birkaç düğüm çökse bile sistem tıkır tıkır çalışmaya devam eder. Cassandra ve Riak bu kafayla yaşar.",
-      "key_takeaway": "Lidere bağımlı olma; çoğunluk (quorum) kuralıyla ayakta kal."
+      "title": "5.6: Amazon Dynamo & 2007 NoSQL Manifestosu (sf. 177-185)",
+      "content": "2007 yılında Amazon CTO'su Werner Vogels tarihe geçen 'Dynamo' makalesini yayınladı. Amazon'un felsefesi şuydu: 'Noel alışverişi sırasında müşteri sepete ürün eklerken sunucu çöktü diye asla hata almamalı; sepet her ne pahasına olursa olsun kaydedilmeli!' Lider kavramını tamamen çöpe attılar. 5 sunucudan 3'ü (Quorum) ayaktaysa yazma başarılıdır dediler. Ağ kopsa bile çalışan bu lidersiz mimari, modern Cassandra ve Riak'ın doğuşunu sağladı.",
+      "key_takeaway": "Amazon Noel satışları durmasın diye lidersiz Dynamo'yu icat etti; müşteri sepeti her şeyden kutsaldır."
     },
     {
       "chapter_num": 28,
-      "title": "6.1: Sharding: Veriyi Parçalama Sanatı (sf. 199-205)",
-      "content": "Veri tek bir makinenin diskine sığmayınca pastayı dilimleyip sunuculara paylaştırırsın (sharding). Anahtara göre aralıkla bölersen (A-C arası 1. sunucu, D-F arası 2. sunucu) alfabetik sıralı tarama kolaydır ama bütün yük 'B' harfine binerse tek makine kavrulur. Hash ile bölersen yük eşit dağılır ama aralık sorgusu atamazsın. Sharding stratejini yanlış seçersen rebalancing kabusu başlar.",
-      "key_takeaway": "Veriyi rastgele değil, sorgu alışkanlığına göre dilimleyeceksin."
+      "title": "6.1: Sharding & Hotspot Felaketi (sf. 199-205)",
+      "content": "Instagram ilk kurulduğunda fotoğraflar tek bir PostgreSQL sunucusuna sığmaz oldu. Mike Krieger ve ekibi veritabanını ID'ye göre parçaladı (sharding). Ama dikkat: Eğer veriyi tarihe göre sharding yaparsan (Pazartesi 1. sunucu, Salı 2. sunucu), bugün atılan bütün fotoğraflar tek bir sunucuya hücum eder; o makine alev alırken diğer 6 sunucu yan yatar! Buna 'hotspot' denir. Çözüm: Anahtarı hash fonksiyonundan geçirip zar atar gibi rastgele dağıtmaktır.",
+      "key_takeaway": "Instagram sharding ile kurtuldu; yükü tarihe göre değil, dengeli hash ile dilimleyeceksin."
     },
     {
       "chapter_num": 29,
-      "title": "6.2: İkincil İndeksler ve Parçalama (sf. 206-208)",
-      "content": "Kullanıcıyı ID ile bulmak kolaydır çünkü ID'nin hangi shard'da olduğu bellidir. Ama 'Rengi kırmızı olan arabaları getir' dersen ne olacak? Yerel indeks (document-based) kullanırsan bütün shard'lara tek tek sormak zorunda kalırsın (Scatter/Gather). Global indeks kullanırsan sorgu hızlıdır ama araba eklerken birden fazla shard'ı güncellemek gerekir. Bedava hız yoktur.",
-      "key_takeaway": "İkincil indeks dağıtık dünyada ya sorguyu yavaşlatır ya yazmayı."
+      "title": "6.2: Scatter/Gather & Dağıtık Arama Çilesi (sf. 206-208)",
+      "content": "Veriyi 100 parçaya böldün diyelim. Kullanıcı ID'si belliyse hangi sunucuya gideceğini anında bilirsin. Ama kullanıcı 'Fiyatı 100 TL'nin altındaki kırmızı ayakkabıları getir' derse ne yapacaksın? Tek bir sunucu bilmez! Sorguyu 100 sunucunun yüzüne birden fırlatırsın (Scatter), hepsi kendi parçasını arar ve cevapları sana döner, sen de birleştirirsin (Gather). En yavaş olan 1 sunucu gecikirse bütün sayfa gecikir. İşte ikincil indeksin dağıtıktaki bedeli budur.",
+      "key_takeaway": "100 sunucuya aynı anda bağırmak en yavaş olanın hızına mahkum olmaktır."
     },
     {
       "chapter_num": 30,
-      "title": "7.1: ACID'in Gerçek Yüzü (sf. 224-228)",
-      "content": "ACID kısaltması pazarlamacıların gözdesidir. Atomicity: Hepsi ya da hiçbiri (hata olursa rollback yap). Consistency: Uygulama kurallarına uy (aslında DB'nin değil senin işindir). Isolation: İşlemler birbirine çelme takmasın. Durability: Elektrik kesilse bile verim kaybolmasın. Ama pratikte çoğu veritabanı tam izolasyon sağlamaz; hız uğruna zayıf izolasyon seviyeleriyle yetinir.",
-      "key_takeaway": "ACID etiketi var diye her şey güvende sanma; izolasyon seviyene bak."
+      "title": "7.1: Jim Gray & 1981 Transaction Devrimi (sf. 224-228)",
+      "content": "1981 yılında Turing Ödülü sahibi dahi Jim Gray, bilgisayar dünyasının en büyük buluşlarından birini yaptı: Transaction! ATM'den para çekerken elektrik kesilirse ne olacak? Hesabından para düşmüş ama makine parayı vermemiş mi kalacak? Gray ACID kavramını modelledi: Ya para hesaptan düşer ve eline geçer, ya da elektrik kesilirse işlem sanki hiç yaşanmamış gibi geri sarılır (rollback). Tüm modern bankacılık Jim Gray'in bu teorisi üstünde durur.",
+      "key_takeaway": "Jim Gray transaction'ı icat etmeseydi bugün her elektrik kesintisinde banka bakiyeniz buharlaşırdı."
     },
     {
       "chapter_num": 31,
-      "title": "7.2: Kirli Okuma ve Kirli Yazma (Read Committed) (sf. 233-236)",
-      "content": "En temel izolasyon: Read Committed. İki kuralı vardır: Henüz commit edilmemiş kirli veriyi okuyamazsın (no dirty reads), commit edilmemiş kirli verinin üstüne yazamazsın (no dirty writes). Çoğu veritabanının varsayılan ayarı budur. Satır bazlı kilitler kullanarak biri yazarken diğerinin çakışmasını engeller.",
-      "key_takeaway": "Read Committed asgari nezakettir; commit edilmemiş veriye dokunulmaz."
+      "title": "7.2: Read Committed & Banka Bakiyesi İllüzyonu (sf. 233-236)",
+      "content": "En yaygın izolasyon seviyesi olan Read Committed sana bir şeyi garanti eder: 'Henüz kaydedilmemiş (uncommitted) kirli veriyi göstermem.' Düşün: Alice hesabında 1000 TL var. Bob aynı anda Alice'e 500 TL yollarken işlem yarım kalıyor. Eğer sen o anda Alice'in bakiyesine bakıp 1500 TL görürsen ve işlem sonra çökerse hayali para görmüş olursun. Read Committed kapıdaki bekçi gibi bitmemiş işlemleri gizler; basit ama hayati bir kalkandır.",
+      "key_takeaway": "Commit edilmemiş veriyi okuyan hayali parayla işlem yapar; Read Committed asgari nezakettir."
     },
     {
       "chapter_num": 32,
-      "title": "7.3: Snapshot İzolasyonu ve MVCC (sf. 237-241)",
-      "content": "Rapor alan bir analiz sorgusu 10 dakika sürerken canlı sisteme para akmaya devam ederse bakiye tutarsız görünür. Çözüm: Snapshot İzolasyonu (MVCC). Her transaction başladığı andaki veritabanının dondurulmuş bir kopyasını görür. Yazıcılar okuyucuları kilitlemez, okuyucular yazıcıları engellemez. Postgres ve Oracle bu sayede kilit krizine girmeden akar.",
-      "key_takeaway": "Okuyanla yazanı birbirine düşürmemek için MVCC ile zamanı dondur."
+      "title": "7.3: MVCC & Zamanı Donduran Fotoğraf (sf. 237-241)",
+      "content": "1980'lerde veritabanlarında kilit krizleri yaşanırdı: Bir analist yıl sonu raporu çıkarmak için tüm tabloları kilitlerdi, o sırada dükkandaki müşteriler kasada beklerdi! 1981'de David Reed 'Multi-Version Concurrency Control' (MVCC) fikrini attı: Yazıcılar okuyucuları engellemesin! Bir transaction başladığında o anın bir fotoğrafı (snapshot) dondurulur. Canlı sisteme yeni kayıtlar aksa bile rapor o dondurulmuş fotoğraftan tutarlı akar. Postgres bu sayede dünya devi oldu.",
+      "key_takeaway": "MVCC zamanı dondurur; okuyanla yazanı birbirine düşürmeden sistemi akıtır."
     },
     {
       "chapter_num": 33,
-      "title": "7.4: Kayıp Güncellemeler ve Write Skew (sf. 242-250)",
-      "content": "İki doktor aynı anda acil nöbetinden çıkmak istiyor. Kural: En az bir doktor nöbette kalmalı. İkisi de aynı anda bakar: 'Aaa diğeri nöbette, ben çıkabilirim' deyip nöbeti bırakırlar ve hastane doktorsuz kalır! İşte buna Write Skew denir. Basit satır kilidi bunu çözemez çünkü iki doktor farklı satırları günceller. Serializable izolasyon veya açık SELECT FOR UPDATE şarttır.",
-      "key_takeaway": "Aynı koşulu kontrol edip farklı satır yazanlar sistemi boşluğa düşürür."
+      "title": "7.4: Nöbetçi Doktorlar & Write Skew Skandalı (sf. 242-250)",
+      "content": "Tarihteki en meşhur concurrency bilmecesi: Bir hastanede nöbet kuralı vardır; 'En az 1 doktor nöbette kalmalıdır.' O gece Dr. Ali ve Dr. Veli nöbettedir. İkisi de aynı anda nöbetten çıkmak ister. Ali bakar: 'Veli nöbette, ben çıkabilirim' der. Aynı mikrosaniyede Veli bakar: 'Ali nöbette, ben çıkabilirim' der. İkisi de onaylar ve hastane doktorsuz kalır! İkisi de farklı satırları güncellediği için normal kilitler çalışmaz. İşte bu 'Write Skew' ancak Serializable izolasyonla engellenir.",
+      "key_takeaway": "İki doktor aynı anda birbirine güvenip nöbeti bırakırsa hastane çöker; Write Skew sessiz katildir."
     },
     {
       "chapter_num": 34,
-      "title": "8.1: Güvenilmez Ağlar ve Paket Kayıpları (sf. 277-285)",
-      "content": "Dağıtık sistemin altın kuralı: Networke asla güvenme! Karşı sunucuya istek atarsın ve cevap gelmez. Neden? İstek mi gitmedi? Sunucu işlemi yaptı da cevap dönerken kablo mu koptu? Yoksa karşı sunucu çöktü mü? Bilemezsin! Timeout koyup tekrar denersen işlemi iki kere yapma riskin vardır (idempotency gerek). Ağ gecikmesi belirsizdir, sınırsızdır.",
-      "key_takeaway": "Cevap gelmediğinde karşı tarafın ne yaptığını tahmin edemezsin; idempotency kur."
+      "title": "8.1: Çalınan Okyanus Kablosu & Ağ Yalanları (sf. 277-285)",
+      "content": "2007 yılında Vietnam açıklarında balıkçılar 100 kilometrelik denizaltı fiber optik kablosunu kesip hurda bakır diye sattılar! Bütün ülkenin interneti günlerce yarı yarıya düştü. Dağıtık sistemlerde ağın başına her şey gelebilir: Köpekbalıkları kabloyu kemirir, router yanar, switch donar. Bir sunucudan cevap alamadığında 'Öldü mü yoksa interneti mi yavaşladı' asla bilemezsin. Peter Deutsch'un 1994 tarihli 'Dağıtık Hesaplamanın 8 Yanılgısı'nın bir numaralı kuralı: 'Ağ güvenilirdir yalanına asla inanma!'",
+      "key_takeaway": "Kabloyu balıkçı da keser köpekbalığı da; ağa güvenen sistem ilk fırtınada batar."
     },
     {
       "chapter_num": 35,
-      "title": "8.2: Saatlerin Yalanı: NTP ve Saat Sapması (sf. 286-298)",
-      "content": "Sunucuların anakartındaki kuvars saatler oda sıcaklığına göre günde birkaç saniye kayar. NTP protokolüyle internetten eşitlersin ama NTP sunucusu ağ gecikmesinden dolayı saati aniden geriye sarabilir! 'Last Write Wins' (LWW) mantığıyla çalışan sistemlerde saat farkından dolayı yeni yapılan işlem eski sanılıp çöpe atılabilir. Google bu yüzden Spanner'da atomik saatler ve GPS alıcıları kullanır (TrueTime).",
-      "key_takeaway": "Sunucu saatine güvenip sıralama yapan veri kaybına davetiye çıkarır."
+      "title": "8.2: Google Spanner & GPS Uydulu Atom Saatleri (sf. 286-298)",
+      "content": "Normalde sunucuların saatleri günde birkaç saniye kayar. NTP internetten eşitler ama gecikmeden dolayı saati geriye sarabilir; 'Son yazan kazanır' diyen sistemler yeni veriyi eski sanıp siler. Google baktı ki bu saat işi yazılımla çözülmüyor; tarihin en çılgın mühendislik hamlesini yaptı: Google Spanner için tüm veri merkezlerine gerçek ATOM SAATLERİ ve GPS antenleri taktılar! Saatin hata payını 7 milisaniyenin altına indirdiler (TrueTime). Saati bile atomla büktüler!",
+      "key_takeaway": "Google saat sapmasını yenmek için veri merkezlerine atom saati dikti; donanımsız saat bir yanılsamadır."
     },
     {
       "chapter_num": 36,
-      "title": "8.3: Çöp Toplayıcı (GC) ve Süreç Duraklamaları (sf. 299-303)",
-      "content": "Java veya Go yazıyorsun, her şey yolunda sanıyorsun. Aniden Garbage Collector (GC) devreye girer ve 'Stop-the-World' molası verir; JVM 10 saniye donar! O sırada diğer sunucular bu makineyi öldü sanıp yeni lider seçer. Bizimki uykudan uyanınca hala kendini lider sanıp veritabanına yazmaya çalışır. Çözüm: Fencing token (artan sıra numarası) ile eski liderin yazmasını engellemektir.",
-      "key_takeaway": "Sunucu donup uyandığında unvanını kaybettiğini bilecek mekanizma kur."
+      "title": "8.3: Java GC Molası & Zombi Sunucu Baskını (sf. 299-303)",
+      "content": "Tarihteki zombi sunucu vakası: Bir sunucu HBase veya Cassandra kümesinde liderdir. Aniden Java'nın Garbage Collector'ı (GC) devreye girer ve 'Stop-the-World' molası verir; bellek temizlenirken sunucu tam 30 saniye donar! Diğer makineler bunu öldü sanıp yeni lider seçer. 30 saniye sonra bizimki uykudan uyanır ama liderlikten kovulduğundan haberi yoktur; zombi gibi veritabanına eski kilitlerle yazmaya çalışır! Çözüm: Her yeni lidere artan sıra numarası (Fencing Token) verip zombiyi kapıda vurmaktır.",
+      "key_takeaway": "GC molasından uyanan zombi sunucu prod'u ezer; fencing token ile kapıyı kilitle."
     },
     {
       "chapter_num": 37,
-      "title": "9.1: Linearizability: Tek Gerçek Zaman İllüzyonu (sf. 323-328)",
-      "content": "Linearizability nedir biliyor musun? Sanki bütün dünyada tek bir sunucu ve tek bir veri kopyası varmış gibi davranmaktır. Biri bir veriyi güncellediği anda, dünyanın diğer ucundaki kullanıcı o andan sonraki ilk okumasında kesinlikle yeni değeri görmelidir. İnanılmaz konforludur ama maliyeti felakettir: Ağ koptuğu anda linearizable sistem ya durur ya da hata verir (CAP teoremindeki CP).",
-      "key_takeaway": "Mutlak tutarlılık istersen ağ koptuğunda kepenkleri kapatmayı göze alırsın."
+      "title": "9.1: CAP Teoremi & Eric Brewer'ın 2000 Manifestosu (sf. 323-335)",
+      "content": "2000 yılında Eric Brewer bilgisayar bilimini kökünden sarsan CAP teoremini açıkladı: Consistency (Tutarlılık), Availability (Erişilebilirlik), Partition Tolerance (Ağ Bölünmesi Toleransı). Üçünü birden aynı anda alamazsın! Ağ kablosu koptuğu anda (Partition) iki seçenek kalır: Ya 'Herkes en son veriyi görsün, ağ düzelene kadar sistemi durduruyorum' dersin (CP), ya da 'Sistem çalışsın ama kullanıcılar birkaç dakika eski veri görsün' dersin (AP). Bedava öğle yemeği yoktur!",
+      "key_takeaway": "CAP teoremi bilişimin termodinamiğidir; ağ koptuğunda ya doğruluktan ya hızdan vazgeçeceksin."
     },
     {
       "chapter_num": 38,
-      "title": "9.2: İki Aşamalı Commit (2PC) Dramı (sf. 354-363)",
-      "content": "Farklı veritabanları arasında atomik işlem yapmak için 2PC kullanılır. Koordinatör önce herkese sorar: 'Hazır mısınız?' Herkes 'Hazırım' deyince ikinci aşamada 'Commit edin' der. Ama koordinatör tam 'Commit edin' dedikten sonra kendisi ölürse ne olacak? Katılımcılar arafta kalır! Kilitleri bırakamazlar, sistem donar. Koordinatör dirilene kadar kimse nefes alamaz.",
-      "key_takeaway": "2PC tek bir koordinatörün insafına bakar; kilitlenirse sistemi rehin alır."
+      "title": "9.2: 2PC & Koordinatörün Kalp Krizi (sf. 354-363)",
+      "content": "Dağıtık transaction'ların babası 2-Phase Commit (2PC) nikah masasına benzer: Nikah memuru (koordinatör) çifte sorar: 'Sen kabul ediyor musun? Sen kabul ediyor musun?' İkisi de 'Evet' derse nikah kıyılır. Ama tam çift 'Evet' dedikten sonra nikah memuru kalp krizi geçirip bayılırsa ne olacak? Çift evlendi mi, bekar mı, kilitli mi kaldılar? Kimse masadan kalkamaz! 2PC'de koordinatör çökerse tüm sunucular kilitli bekler; bu yüzden modern sistemler 2PC yerine konsensüse kaçar.",
+      "key_takeaway": "2PC nikah memurunun bayılması gibidir; koordinatör ölürse tüm sistem arafta kalır."
     },
     {
       "chapter_num": 39,
-      "title": "9.3: Dağıtık Konsensüs: Raft ve Paxos (sf. 364-375)",
-      "content": "Bütün düğümlerin tek bir lider veya tek bir karar üzerinde anlaşmasını sağlayan mucize: Konsensüs algoritmaları (Raft, Paxos). Çoğunluk (quorum) esasına göre çalışır; 5 düğümün 3'ü hayattaysa sistem tıkır tıkır yeni lider seçer ve kararları kaydeder. ZooKeeper ve etcd bu sayede Kubernetes'in ve devasa dağıtık sistemlerin beyni olarak dimdik ayakta kalır.",
-      "key_takeaway": "Konsensüs olmasa modern bulut sistemleri bir gün bile ayakta kalamazdı."
+      "title": "9.3: Leslie Lamport & Paxos'un Reddedilme Hikayesi (sf. 364-375)",
+      "content": "1990'da Turing ödüllü dahi Leslie Lamport, dağıtık sistemlerde düğümlerin nasıl anlaşacağını anlatan Paxos algoritmasını yazdı. Ama makaleyi o kadar trollce yazmıştı ki; antik Yunan'daki Paxos adasının tüccarlar meclisini ve onların oylama sistemini anlatıyordu! Akademik hakemler 'Bu ne saçmalık, Yunan adasıyla ne işimiz var' deyip makaleyi reddetti! Yıllar sonra Google 'Chubby' sistemini Paxos ile kurunca herkes Lamport'un dehasına secde etti. Bugün Kubernetes'i ayakta tutan etcd ve Raft bu fikrin mirasçısıdır.",
+      "key_takeaway": "Paxos'u başta Yunan masalı sanıp reddettiler; bugün dünyanın tüm bulut altyapısı bu algoritmayla dönüyor."
     },
     {
       "chapter_num": 40,
-      "title": "10.1: Unix Felsefesinden MapReduce'a (sf. 389-404)",
-      "content": "Unix'in 50 yıllık felsefesi: 'Küçük programlar yap, bir işi iyi yapsınlar ve pipe (|) ile birbirine bağla.' Doug Cutting ve Google bu fikri alıp yüzlerce sunucuya yaydı ve MapReduce doğdu. Veri diske bloklar halinde dağıtılır (HDFS). Map aşaması filtreler ve dönüştürür, Reduce aşaması toplar ve hesaplar. Basit, deterministik ve hataya dayanıklı bir devrimdir.",
-      "key_takeaway": "Karmaşık veri işleme işleri temelde Unix pipe mantığının kopyasıdır."
+      "title": "10.1: Douglas McIlroy & 1964 Unix Boru Hattı (sf. 389-404)",
+      "content": "1964 yılında Bell Labs'te Douglas McIlroy bir daktilo notu yazdı: 'Verileri bir programdan çıkarıp doğrudan diğerine aktarabileceğimiz bir boru (pipe) sistemi yapmalıyız.' 1973'te Ken Thompson bunu Unix çekirdeğine ekledi: cat access.log | awk '{print $1}' | sort | uniq -c | sort -nr. Tek satırda devasa log analizi! 2004'te Google bu fikri aldı, yüz binlerce sunucuya yaydı ve MapReduce adını verdi. Modern büyük veri mühendisliği 1964'te bir odada yazılan daktilo notunun torunudur.",
+      "key_takeaway": "1964'teki Unix pipe notu 40 yıl sonra Google MapReduce ve büyük veri devrimine dönüştü."
     },
     {
       "chapter_num": 41,
-      "title": "10.2: Spark ve Veri Akış Motorları (Dataflow) (sf. 419-425)",
-      "content": "MapReduce sağlamdı ama her adımda sonucu diske yazdığı için hantaldı. Yeni nesil motorlar (Spark, Flink, Tez) dedi ki: 'Yahu ara sonuçları niye diske yazıyoruz, RAM'de tutalım!' Directed Acyclic Graph (DAG) ile bütün işlem planını baştan çizer, gereksiz adımları eler ve veriyi bellekte işleyerek MapReduce'u 100'e katlar. Veri ambarlarının kralı haline geldi.",
-      "key_takeaway": "Diske yazma ameleliğini bırakıp RAM'de boru hattı kuran Spark hız rekoru kırar."
+      "title": "10.2: UC Berkeley & Spark'ın Doğuşu (sf. 419-425)",
+      "content": "2009'da UC Berkeley AMPLab'de Matei Zaharia ve arkadaşları MapReduce ile çalışırken sinirden saçını başını yoluyordu. Çünkü MapReduce her adımda veriyi diske yazıp tekrar okuyordu; makine öğrenmesi algoritmaları 50 kere diske gidip geldiği için günler sürüyordu. Matei 'Yeter artık, veriyi RAM'de tutacağız' dedi ve Apache Spark'ı yazdı (RDD mimarisi). İşler 100 kat hızlandı; günlerce süren raporlar 10 dakikada bitti ve MapReduce tarihin tozlu raflarına gömüldü.",
+      "key_takeaway": "Diske yazma çilesine isyan eden Berkeley öğrencileri Spark'ı yazdı ve büyük veriyi RAM'e taşıdı."
     },
     {
       "chapter_num": 42,
-      "title": "11.1: Event Akışları ve Log Tabanlı Mesaj Kuyrukları (sf. 439-448)",
-      "content": "Geleneksel RabbitMQ mesajı tüketiciye verir vermez siler. Ama Kafka dedi ki: 'Ben silmem birader, diske append-only log olarak yazarım, sen offset ile nereden okumak istersen oradan oku!' Bu sayede bir olayı hem arama motoruna, hem analitiğe, hem bildirim servisine aynı anda bağımsız hızlarda dinletebilirsin. Kafka sadece kuyruk değil, dağıtık commit log'dur.",
-      "key_takeaway": "Mesajı silmeyen, log gibi saklayan sistem mimarini özgürleştirir."
+      "title": "11.1: Jay Kreps & Franz Kafka'nın İntikamı (sf. 439-448)",
+      "content": "2010 yılında LinkedIn'de mühendis olan Jay Kreps devasa bir sorunla karşılaştı: Sitedeki her tıklama, her profil ziyareti ve her mesaj için ayrı bir veri borusu açılmıştı; mimari spagettiye dönmüştü. Kreps, yazar Franz Kafka'nın 'sıkıntılı ve bürokratik dönüşüm' dünyasına hayran olduğu için yeni sisteme Apache Kafka adını verdi. Mesajı tüketene verip silen eski kuyrukları çöpe attı; 'Her şeyi diske commit log olarak yazacağız, herkes kendi hızında okusun' dedi. Bugün dünyanın tüm finans ve streaming altyapısı Kafka ile akıyor.",
+      "key_takeaway": "LinkedIn'in spagetti mimarisine isyan eden Kreps, Kafka'yı yazdı ve veri dünyasını akışa çevirdi."
     },
     {
       "chapter_num": 43,
-      "title": "11.2: Change Data Capture (CDC) ve Event Sourcing (sf. 449-463)",
-      "content": "Veritabanında kayıt güncellenince bunu diğer sistemlere nasıl haber vereceksin? Uygulama koduna güvenilmez. Çözüm: Change Data Capture (Debezium). Veritabanının kendi Write-Ahead Log'unu dinler, her INSERT/UPDATE/DELETE işlemini Kafka'ya event olarak basar. Event Sourcing ise durumu değil, durumu değiştiren tüm olayları baştan sona saklar. Geçmişe dönüp sistemi istediğin andan yeniden inşa edebilirsin.",
-      "key_takeaway": "Durumu değil olayları saklarsan zamanda yolculuk yapabilirsin."
+      "title": "11.2: Change Data Capture & Zamanda Yolculuk (sf. 449-463)",
+      "content": "Geleneksel mimarilerde yazılımcı hem PostgreSQL'e yazar hem ElasticSearch'e atar. Ama ElasticSearch o an çökerse ne olur? İki veritabanı birbirinden kopar. 2014'te Change Data Capture (CDC / Debezium) devrimi başladı: Veritabanının kendi kara kutusunu (Write-Ahead Log) dinle! Veritabanında ne değiştiyse otomatik Kafka'ya event aksın. Event Sourcing ise durumu değil, tüm geçmiş olayları saklar. Banka gibi: Hesabındaki parayı değil, 10 yıllık tüm para giriş-çıkış hareketlerini saklarsın; istediğin ana geri sarabilirsin.",
+      "key_takeaway": "Durumu değil olayları saklarsan zamanda geriye gidip sistemi baştan yaratabilirsin."
     },
     {
       "chapter_num": 44,
-      "title": "11.3: Akış Pencereleri ve Zaman Kavramı (sf. 464-474)",
-      "content": "Akan veride 'Son 5 dakikadaki tıklamaları say' demek göründüğü kadar kolay değildir. Hangi 5 dakika? Olayın cep telefonunda gerçekleştiği an mı (event time), yoksa sunucuya ulaştığı an mı (processing time)? İnternet kesilip telefon 1 saat sonra bağlanırsa o olay geçmişe mi yazılacak? Tumbling ve sliding windowing kurallarıyla zamanı doğru bükemeyen canlı akışta çuvallar.",
-      "key_takeaway": "Canlı akışta saatin kimin kolunda olduğuna dikkat etmezsen istatistiğin yalan olur."
+      "title": "11.3: 2015 Borsa Çöküşü & Akış Pencereleri (sf. 464-474)",
+      "content": "Canlı akışta en büyük tuzak zamanın göreliliğidir. Düşün: Metro tünelindeki bir kullanıcı telefonundan hisse senedi alıyor (Event Time: 14:00). Ama metroda internet çekmiyor, telefon tünelden çıkıp sunucuya 14:15'te bağlanıyor (Processing Time). Sen 'Son 5 dakikadaki işlemleri say' dersen bu işlemi nereye koyacaksın? 14:00'e mi 14:15'e mi? Su geçiren pencereler (watermarks) kullanmazsan borsa analizinde milyonlarca dolar batırırsın. Zaman akarken saatin kimin kolunda olduğuna dikkat edeceksin.",
+      "key_takeaway": "Metro tünelinden 15 dakika sonra çıkan veri borsayı yanıltır; akışta zamanı bükmeyi bileceksin."
     },
     {
       "chapter_num": 45,
-      "title": "12.1: Veritabanını Parçalarına Ayırmak (Unbundling) (sf. 498-508)",
-      "content": "Martin kitabın sonunda büyük resmi gösterir: Her işi tek başına yapan devasa bir 'her şey dahil' veritabanı artık bir hayaldir. Doğru yol: Depolamayı, indekslemeyi, aramayı ve önbelleği birbirinden ayırmak ve bunları güvenilir event akışlarıyla (CDC/Kafka) birbirine bağlamaktır. Böylece sistemin her parçası en iyi yaptığı işe odaklanır.",
-      "key_takeaway": "Tek bir mucize arama; uzmanlaşmış sistemleri event akışıyla bağla."
+      "title": "12.1: Unix'in Büyük Rövanşı: Unbundling (sf. 498-508)",
+      "content": "1980'lerde Oracle ve devasa monolitik veritabanları ortaya çıktığında Unix'in 'küçük uzman aletler' felsefesini ezip geçmişlerdi. 'Her şeyi tek bir devasa DB içine koyun' dediler. Ama Martin Kleppmann kitabın finalinde tarihi gerçeği açıklar: Unix geri döndü! Artık tek bir devasa veritabanı yok; indeksleme için Elastic, önbellek için Redis, analitik için ClickHouse, transaction için Postgres var. Bunları Kafka ile birbirine bağlıyoruz. Yani 1970'lerin Unix boru hattı 2020'lerde interneti yeniden fethetti.",
+      "key_takeaway": "Monolitik veritabanları öldü; 50 yıllık Unix felsefesi dağıtık dünyada zaferini ilan etti."
     },
     {
       "chapter_num": 46,
-      "title": "12.2: Büyük Final: Doğruluk ve Veri Etiği (sf. 515-531)",
-      "content": "En hızlı mimariyi kursan, P99 latansı 1 milisaniyeye indirsen bile ne fayda? Topladığın veri yanlışsa, sistem kullanıcıyı mağdur ediyorsa veya gizlilik skandalıyla manşet oluyorsan mimarin çöptür. Martin son sözü söyler: Yazılım sadece teknik bir bulmaca değil, insanların hayatını etkileyen bir güçtür. Güvenilir, ölçeklenebilir ve hepsinden önemlisi ahlaklı sistemler inşa edin.",
-      "key_takeaway": "Teknikte kusursuz olsan bile vicdanı ve etiği unutan mimari iflas eder."
+      "title": "12.2: Büyük Final: Volkswagen Skandalı ve Veri Etiği (sf. 515-531)",
+      "content": "2015 yılında otomotiv devi Volkswagen'in mühendisleri araçlara öyle bir yazılım yazdı ki; araba emisyon testine girdiğinde bunu algılayıp gazı kısıyordu, yola çıkınca zehir kusuyordu! Milyarlarca dolar ceza yediler, CEO istifa etti, saygınlıkları sıfırlandı. Martin son sayfada tüm mühendislere seslenir: En hızlı dağıtık sistemi kursan, atom saatleriyle Spanner çalıştırsan bile ne yazar? Eğer yazdığın kod insanları kandırıyorsa, veri etiğinden uzaksan mimarin koca bir çöptür. Doğru, dürüst ve ahlaklı sistemler inşa edin.",
+      "key_takeaway": "Atom saatiyle çalışsan bile etiği unutan mimari iflas eder; asıl ustalık vicdanlı kod yazmaktır."
     }
   ]
 }
